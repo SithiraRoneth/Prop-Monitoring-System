@@ -21,4 +21,5 @@ public class EquipmentDto {
     private Status status;
     private StaffDto staff;
     private FieldDto field;
+
 }
