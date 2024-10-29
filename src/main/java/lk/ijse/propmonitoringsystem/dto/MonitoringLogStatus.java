@@ -5,5 +5,7 @@
  * */
 package lk.ijse.propmonitoringsystem.dto;
 
-public interface MonitoringLogStatus {
+import java.io.Serializable;
+
+public interface MonitoringLogStatus extends Serializable, SuperDto{
 }

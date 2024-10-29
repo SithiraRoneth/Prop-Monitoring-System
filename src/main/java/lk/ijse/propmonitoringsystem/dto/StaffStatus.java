@@ -4,5 +4,8 @@
 * Project Name :Prop-Monitoring-System 
 * */
 package lk.ijse.propmonitoringsystem.dto;
-public interface StaffStatus {
+
+import java.io.Serializable;
+
+public interface StaffStatus extends Serializable, SuperDto{
 }

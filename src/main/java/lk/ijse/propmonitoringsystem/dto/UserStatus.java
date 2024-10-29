@@ -1,4 +1,6 @@
 package lk.ijse.propmonitoringsystem.dto;
 
-public interface UserStatus {
+import java.io.Serializable;
+
+public interface UserStatus extends Serializable, SuperDto{
 }
