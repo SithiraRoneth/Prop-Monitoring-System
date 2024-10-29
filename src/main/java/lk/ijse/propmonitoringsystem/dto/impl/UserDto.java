@@ -5,6 +5,7 @@
 * */
 package lk.ijse.propmonitoringsystem.dto.impl;
 
+import lk.ijse.propmonitoringsystem.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,5 @@ import lombok.NoArgsConstructor;
 public class UserDto {
     private String email;
     private String password;
-    private Enum role;
+    private Role role;
 }

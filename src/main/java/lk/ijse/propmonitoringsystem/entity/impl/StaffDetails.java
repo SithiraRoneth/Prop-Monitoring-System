@@ -1,6 +1,6 @@
 /* Created By Sithira Roneth
  * Date :10/29/24
- * Time :10:31
+ * Time :11:37
  * Project Name :Prop-Monitoring-System
  * */
 package lk.ijse.propmonitoringsystem.entity.impl;
@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Crop implements SuperEntity {
+@Table(name = "staffDetails")
+public class StaffDetails implements SuperEntity {
     @Id
-    private String cropCode;
-    private String cropName;
-    private String scientificName;
-    private String cropImage;
-    private String category;
-    private String season;
+    private String staffDetails_id;
 
     @ManyToOne
-    @JoinColumn(name = "Field_Code",nullable = false)
+    @JoinColumn(name = "staffId",nullable = false)
+    private Staff staff;
+
+    @ManyToOne
+    @JoinColumn(name = "fieldCode",nullable = false)
     private Field field;
 }
