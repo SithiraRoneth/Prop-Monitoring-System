@@ -1,9 +1,9 @@
 /* Created By Sithira Roneth
  * Date :10/29/24
- * Time :10:02
+ * Time :10:30
  * Project Name :Prop-Monitoring-System
  * */
-package lk.ijse.propmonitoringsystem.Entity.Impl;
+package lk.ijse.propmonitoringsystem.dto;
 
-public class User {
+public interface MonitoringLogStatus {
 }
