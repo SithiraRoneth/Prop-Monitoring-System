@@ -6,14 +6,10 @@
 package lk.ijse.propmonitoringsystem.entity.impl;
 
 import jakarta.persistence.*;
-import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
-import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.awt.*;
 import java.util.List;
 
 @Data

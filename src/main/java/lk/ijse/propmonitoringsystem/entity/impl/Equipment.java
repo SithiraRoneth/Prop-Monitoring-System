@@ -31,7 +31,7 @@ public class Equipment implements SuperEntity {
     private Status status;
 
     @OneToMany(mappedBy = "equipment")
-    private List<FieldDetails> field;
+    private List<FieldDetails> eq_id;
 
     @OneToMany(mappedBy = "equipment")
     private List<EquipmentDetails> equipment_id;

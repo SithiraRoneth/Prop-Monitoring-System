@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "crop")
 public class Crop implements SuperEntity {
     @Id
     private String cropCode;
