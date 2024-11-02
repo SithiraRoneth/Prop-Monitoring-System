@@ -5,6 +5,7 @@
 * */
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
+import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.CropService;
 import lk.ijse.propmonitoringsystem.customStatusCode.SelectedCropErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.CropDao;
