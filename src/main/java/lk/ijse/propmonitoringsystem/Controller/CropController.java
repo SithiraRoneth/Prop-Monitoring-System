@@ -77,8 +77,8 @@ public class CropController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "cropCode", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deleteCrop(@PathVariable("cropCode") String cropCode) {
+    @DeleteMapping(value = "crop-code", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteCrop(@PathVariable("crop-code") String cropCode) {
         try {
             cropService.deleteCrop(cropCode);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
