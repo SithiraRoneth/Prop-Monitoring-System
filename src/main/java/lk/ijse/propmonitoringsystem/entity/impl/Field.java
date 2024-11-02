@@ -1,15 +1,14 @@
-/* Created By Sithira Roneth
- * Date :10/29/24
- * Time :10:31
- * Project Name :Prop-Monitoring-System
- * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data
@@ -24,15 +23,18 @@ public class Field implements SuperEntity {
     private String fieldLocation;
     private Double extendSizeOfTheField;
 
-    @OneToMany(mappedBy = "field")
-    private List<Crop> Field_Code;
-
-    @OneToMany(mappedBy = "field")
-    private List<StaffDetails> fieldCode;
-
-    @OneToMany(mappedBy = "field")
-    private List<FieldDetails> field_code;
+//    @OneToMany(mappedBy = "field")
+//    private List<Crop> Field_Code;
+//
+//    @OneToMany(mappedBy = "field")
+//    private List<StaffFieldDetails> fieldCode;
+//
+//    @OneToMany(mappedBy = "field")
+//    private List<FieldEquipmentDetails> field_code;
 
     private String fieldImage1;
     private String fieldImage2;
+
+    @OneToMany(mappedBy = "field")
+    private List<UserFieldDetails> field_code;
 }

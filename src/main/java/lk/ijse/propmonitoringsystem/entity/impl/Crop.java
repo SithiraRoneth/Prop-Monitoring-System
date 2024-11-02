@@ -1,8 +1,3 @@
-/* Created By Sithira Roneth
- * Date :10/29/24
- * Time :10:31
- * Project Name :Prop-Monitoring-System
- * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
 import jakarta.persistence.*;
@@ -15,8 +10,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "crop")
-public class Crop implements SuperEntity {
+@Table(name="crop")
+public class Crop implements SuperEntity{
     @Id
     private String cropCode;
     private String cropName;
@@ -28,5 +23,4 @@ public class Crop implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "Field_Code",nullable = false)
     private Field field;
-
 }

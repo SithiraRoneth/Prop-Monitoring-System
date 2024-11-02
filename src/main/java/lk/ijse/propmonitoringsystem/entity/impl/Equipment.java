@@ -1,14 +1,6 @@
-/* Created By Sithira Roneth
- * Date :10/29/24
- * Time :10:32
- * Project Name :Prop-Monitoring-System
- * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.propmonitoringsystem.entity.Status;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lk.ijse.propmonitoringsystem.entity.Type;
@@ -27,13 +19,19 @@ public class Equipment implements SuperEntity {
     @Id
     private String eqId;
     private String equipmentName;
+
+    @Enumerated(EnumType.STRING)
     private Type equipmentType;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy = "equipment")
-    private List<FieldDetails> field;
+    private List<FieldEquipmentDetails> field;
 
     @OneToMany(mappedBy = "equipment")
-    private List<EquipmentDetails>equipment_id;
+    private List<StaffEquipmentDetails> equipment_id;
 
+    @OneToMany(mappedBy = "equipment")
+    private List<UserEquipmentDetails> equipment_code;
 }

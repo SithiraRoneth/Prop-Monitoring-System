@@ -1,17 +1,12 @@
-/* Created By Sithira Roneth
- * Date :10/29/24
- * Time :10:32
- * Project Name :Prop-Monitoring-System
- * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
 import jakarta.persistence.*;
-import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -31,4 +26,7 @@ public class Vehicle implements SuperEntity {
 //    private Staff staff;
 
     private String remarks;
+
+    @OneToMany(mappedBy = "vehicle")
+    private List<UserVehicleDetails> vehicle_code;
 }

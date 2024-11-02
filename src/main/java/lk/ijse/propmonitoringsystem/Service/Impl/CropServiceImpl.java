@@ -7,7 +7,7 @@ package lk.ijse.propmonitoringsystem.Service.Impl;
 
 import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.CropService;
-import lk.ijse.propmonitoringsystem.customStatusCode.SelectedCropErrorStatus;
+import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.CropDao;
 import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class CropServiceImpl implements CropService {
     @Autowired
     private CropDao cropDao;
@@ -41,7 +42,7 @@ public class CropServiceImpl implements CropService {
             Crop selectedCrop = cropDao.getReferenceById(cropCode);
             return mapping.toCropDto(selectedCrop);
         }else {
-            return new SelectedCropErrorStatus(2,"Crop with code " + cropCode + " not found");
+            return new SelectedErrorStatus(2,"Crop with code " + cropCode + " not found");
         }
     }
 

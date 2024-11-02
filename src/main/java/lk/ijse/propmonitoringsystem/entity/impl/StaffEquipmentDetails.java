@@ -1,8 +1,3 @@
-/* Created By Sithira Roneth
- * Date :10/29/24
- * Time :13:14
- * Project Name :Prop-Monitoring-System
- * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
 import jakarta.persistence.*;
@@ -16,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="equipmentDetails")
-public class EquipmentDetails implements SuperEntity {
+public class StaffEquipmentDetails implements SuperEntity {
     @Id
     private String eqDetailsId;
 
@@ -27,5 +22,4 @@ public class EquipmentDetails implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "equipmentId",nullable = false)
     private Equipment equipment;
-
 }

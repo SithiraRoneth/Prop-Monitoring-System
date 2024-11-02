@@ -5,10 +5,7 @@
  * */
 package lk.ijse.propmonitoringsystem.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.propmonitoringsystem.entity.Gender;
 import lk.ijse.propmonitoringsystem.entity.Role;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
@@ -40,10 +37,12 @@ public class Staff implements SuperEntity {
     private String addressLine5;
     private String contactNo;
     private String email;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "staff")
-    private List<StaffDetails> staffId;
+    private List<StaffFieldDetails> staffId;
 
 //    @OneToMany(mappedBy = "vehicle")
 //    private List<Vehicle> vehicle_Code;
