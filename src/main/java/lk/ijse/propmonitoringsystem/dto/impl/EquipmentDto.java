@@ -5,6 +5,7 @@
 * */
 package lk.ijse.propmonitoringsystem.dto.impl;
 
+import lk.ijse.propmonitoringsystem.dto.EquipmentStatus;
 import lk.ijse.propmonitoringsystem.entity.Status;
 import lk.ijse.propmonitoringsystem.entity.Type;
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EquipmentDto {
+public class EquipmentDto implements EquipmentStatus {
     private String equipmentId;
     private String equipmentName;
     private Type equipmentType;

@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
 import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
+import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class MonitoringLog {
+public class MonitoringLog implements SuperEntity {
     @Id
     private String logCode;
     private Date date;

@@ -5,6 +5,7 @@
 * */
 package lk.ijse.propmonitoringsystem.dto.impl;
 
+import lk.ijse.propmonitoringsystem.dto.UserStatus;
 import lk.ijse.propmonitoringsystem.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserDto implements UserStatus {
     private String email;
     private String password;
     private Role role;

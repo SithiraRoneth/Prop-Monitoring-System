@@ -5,6 +5,7 @@
 * */
 package lk.ijse.propmonitoringsystem.dto.impl;
 
+import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CropDto {
+public class CropDto implements CropStatus {
     private String cropCode;
     private String cropName;
     private String scientificName;

@@ -5,6 +5,7 @@
  * */
 package lk.ijse.propmonitoringsystem.dto.impl;
 
+import lk.ijse.propmonitoringsystem.dto.FieldStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FieldDto {
+public class FieldDto implements FieldStatus {
     private String fieldCode;
     private String fieldName;
     private Point fieldLocation;

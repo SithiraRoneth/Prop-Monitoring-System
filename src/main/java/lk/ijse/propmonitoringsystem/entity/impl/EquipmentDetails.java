@@ -27,4 +27,5 @@ public class EquipmentDetails implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "equipmentId",nullable = false)
     private Equipment equipment;
+
 }
