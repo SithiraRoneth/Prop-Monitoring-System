@@ -5,14 +5,8 @@
  * */
 package lk.ijse.propmonitoringsystem.util;
 
-import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
-import lk.ijse.propmonitoringsystem.dto.impl.EquipmentDto;
-import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
-import lk.ijse.propmonitoringsystem.dto.impl.VehicleDto;
-import lk.ijse.propmonitoringsystem.entity.impl.Crop;
-import lk.ijse.propmonitoringsystem.entity.impl.Equipment;
-import lk.ijse.propmonitoringsystem.entity.impl.Field;
-import lk.ijse.propmonitoringsystem.entity.impl.Vehicle;
+import lk.ijse.propmonitoringsystem.dto.impl.*;
+import lk.ijse.propmonitoringsystem.entity.impl.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +57,15 @@ public class Mapping {
     }
     public List<EquipmentDto> toEquipmentDtoList(List<Equipment> equipmentList) {
         return modelMapper.map(equipmentList, new TypeToken<List<EquipmentDto>>() {}.getType());
+    }
+    // staff
+    public Staff toStaffEntity(StaffDto staffDto) {
+        return modelMapper.map(staffDto, Staff.class);
+    }
+    public StaffDto toStaffDto(Staff staff) {
+        return modelMapper.map(staff, StaffDto.class);
+    }
+    public List<StaffDto> toStaffDtoList(List<Staff> staffList) {
+        return modelMapper.map(staffList, new TypeToken<List<StaffDto>>() {}.getType());
     }
 }
