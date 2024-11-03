@@ -6,9 +6,11 @@
 package lk.ijse.propmonitoringsystem.util;
 
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
+import lk.ijse.propmonitoringsystem.dto.impl.EquipmentDto;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
 import lk.ijse.propmonitoringsystem.dto.impl.VehicleDto;
 import lk.ijse.propmonitoringsystem.entity.impl.Crop;
+import lk.ijse.propmonitoringsystem.entity.impl.Equipment;
 import lk.ijse.propmonitoringsystem.entity.impl.Field;
 import lk.ijse.propmonitoringsystem.entity.impl.Vehicle;
 import org.modelmapper.ModelMapper;
@@ -51,5 +53,15 @@ public class Mapping {
     }
     public List<VehicleDto> vehicleDtoList(List<Vehicle> vehicleList) {
         return modelMapper.map(vehicleList, new TypeToken<List<VehicleDto>>() {}.getType());
+    }
+    // equipment
+    public Equipment toEquipmentEntity(EquipmentDto equipmentDto) {
+        return modelMapper.map(equipmentDto, Equipment.class);
+    }
+    public EquipmentDto toEquipmentDto(Equipment equipment) {
+        return modelMapper.map(equipment, EquipmentDto.class);
+    }
+    public List<EquipmentDto> toEquipmentDtoList(List<Equipment> equipmentList) {
+        return modelMapper.map(equipmentList, new TypeToken<List<EquipmentDto>>() {}.getType());
     }
 }

@@ -43,7 +43,7 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping(value = "vehicleCode" ,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "{vehicleCode}" ,produces = MediaType.APPLICATION_JSON_VALUE)
     public VehicleStatus getSelectedVehicle(@PathVariable("vehicleCode") String vehicleCode){
         return vehicleService.getSelectedVehicle(vehicleCode);
     }
@@ -51,12 +51,23 @@ public class VehicleController {
     public List<VehicleDto> getVehicles(){
         return vehicleService.getAllVehicles();
     }
-    @PutMapping(value = "vehicleCode",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "{vehicleCode}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateVehicle(@PathVariable("vehicleCode") String vehicleCode, @RequestBody VehicleDto vehicleDto){
         try {
             vehicleService.updateVehicle(vehicleCode,vehicleDto);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping(value = "{vehicleCode}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteVehicle(@PathVariable("vehicleCode") String vehicleCode){
+        try {
+            vehicleService.deleteVehicle(vehicleCode);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -66,7 +66,7 @@ public class CropServiceImpl implements CropService {
     public void updateCrop(String cropCode, CropDto cropDto) {
         Optional<Crop> tempCrop = cropDao.findById(cropCode);
         if (tempCrop.isPresent()){
-            tempCrop.get().setCropCode(cropDto.getCropCode());
+            //tempCrop.get().setCropCode(cropDto.getCropCode());
             tempCrop.get().setCropName(cropDto.getCropName());
             tempCrop.get().setScientificName(cropDto.getScientificName());
             tempCrop.get().setCropImage(tempCrop.get().getCropImage());

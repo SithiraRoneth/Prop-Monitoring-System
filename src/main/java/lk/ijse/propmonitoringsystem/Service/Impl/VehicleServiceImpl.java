@@ -53,12 +53,22 @@ public class VehicleServiceImpl implements VehicleService {
         Optional<Vehicle> tempVehicle = vehicleDao.findById(vehicleCode);
         if (tempVehicle.isPresent()){
             Vehicle vehicle = tempVehicle.get();
-            vehicle.setVehicleCode(vehicleDto.getVehicleCode());
+           // vehicle.setVehicleCode(vehicleDto.getVehicleCode());
             vehicle.setLicensePlateNo(vehicleDto.getLicensePlateNo());
             vehicle.setVehicleCategory(vehicleDto.getVehicleCategory());
             vehicle.setFuelType(vehicleDto.getFuelType());
             vehicle.setStatus(vehicleDto.getStatus());
             vehicle.setRemarks(vehicleDto.getRemarks());
+        }
+    }
+
+    @Override
+    public void deleteVehicle(String vehicleCode) {
+        Optional<Vehicle> existVehicle = vehicleDao.findById(vehicleCode);
+        if (existVehicle.isPresent()){
+            throw new RuntimeException("Delete Vehicle Failed");
+        }else {
+            vehicleDao.deleteById(vehicleCode);
         }
     }
 }
