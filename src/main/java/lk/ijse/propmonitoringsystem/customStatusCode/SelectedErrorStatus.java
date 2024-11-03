@@ -7,6 +7,7 @@ package lk.ijse.propmonitoringsystem.customStatusCode;
 
 import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lk.ijse.propmonitoringsystem.dto.EquipmentStatus;
+import lk.ijse.propmonitoringsystem.dto.FieldStatus;
 import lk.ijse.propmonitoringsystem.dto.VehicleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SelectedErrorStatus implements CropStatus, VehicleStatus, EquipmentStatus {
+public class SelectedErrorStatus implements CropStatus, VehicleStatus, EquipmentStatus, FieldStatus {
     private int statusCode;
     private String status;
 }
