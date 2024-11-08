@@ -1,4 +1,4 @@
-# Prop Monitorin System
+# Prop Monitoring System
 
 This is a comprehensive prop monitoring system developed using Spring Boot.The system provides functionalities for managing fields, crops, staff, monitoring logs, vehicles, and equipment. It incorporates JWT-based authentication and authorization to secure access to different roles.
 
