@@ -30,6 +30,7 @@ This is a comprehensive prop monitoring system developed using Spring Boot.The s
  - MySQL or PostgreSQL Database
 
 ### Clone the Repository
-
+ - Back End : https://github.com/SithiraRoneth/Prop-Monitoring-System.git
+ - Front End : https://github.com/SithiraRoneth/PropMonitoring-FE.git
 ### License
 This project is licensed under the MIT License - see the LICENSE file for details.
