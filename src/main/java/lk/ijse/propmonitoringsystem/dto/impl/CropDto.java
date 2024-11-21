@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,6 @@ public class CropDto implements CropStatus {
     private String cropImage;
     private String category;
     private String season;
-    private FieldDto field;
+    //private List<FieldDto> field;
+    private String field;
 }

@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class EquipmentDto implements EquipmentStatus {
     private String equipmentName;
     private Type equipmentType;
     private Status status;
-    private StaffDto staff;
-    private FieldDto field;
+    private List<StaffDto> staff;
+    private List<FieldDto> field;
 
 }

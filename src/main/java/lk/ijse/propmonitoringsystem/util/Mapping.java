@@ -79,4 +79,36 @@ public class Mapping {
     public List<MonitoringLogDto> toMonitorDtoList(List<MonitoringLog> monitoringLogs) {
         return modelMapper.map(monitoringLogs, new TypeToken<List<MonitoringLogDto>>() {}.getType());
     }
+    // fieldEquipmentDetails
+    public FieldEquipmentDetails toFieldEquipmentDetailsEntity(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
+        return modelMapper.map(fieldEquipmentDetailsDto, FieldEquipmentDetails.class);
+    }
+    public FieldEquipmentDetailsDto toFieldEquipmentDetailsDto(FieldEquipmentDetails fieldEquipmentDetails) {
+        return modelMapper.map(fieldEquipmentDetails, FieldEquipmentDetailsDto.class);
+    }
+    public List<FieldEquipmentDetailsDto> FieldEquipmentDetailsList(List<FieldEquipmentDetails> fieldEquipmentDetailsList) {
+        return modelMapper.map(fieldEquipmentDetailsList, new TypeToken<List<FieldEquipmentDetailsDto>>() {}.getType());
+    }
+
+    // staffEquipmentDetails
+    public StaffEquipmentDetails toStaffEquipmentDetailsEntity(StaffEquipmentDto staffEquipmentDto) {
+        return modelMapper.map(staffEquipmentDto, StaffEquipmentDetails.class);
+    }
+    public StaffEquipmentDto toStaffEquipmentDetailsDto(StaffEquipmentDetails staffEquipmentDetails) {
+        return modelMapper.map(staffEquipmentDetails, StaffEquipmentDto.class);
+    }
+    public List<StaffEquipmentDto> StaffEquipmentDetailsList(List<StaffEquipmentDetails> staffEquipmentDetailsList) {
+        return modelMapper.map(staffEquipmentDetailsList, new TypeToken<List<StaffEquipmentDto>>() {}.getType());
+    }
+
+    // staffFieldDetails
+    public StaffFieldDetails toStaffFieldDetailsEntity(StaffFieldDetailsDto staffFieldDetailsDto) {
+        return modelMapper.map(staffFieldDetailsDto, StaffFieldDetails.class);
+    }
+    public StaffFieldDetailsDto toStaffFieldDetailsDto(StaffFieldDetails staffFieldDetails) {
+        return modelMapper.map(staffFieldDetails, StaffFieldDetailsDto.class);
+    }
+    public List<StaffFieldDetailsDto> StaffFieldDetailsList(List<StaffFieldDetails> staffFieldDetailsList) {
+        return modelMapper.map(staffFieldDetailsList, new TypeToken<List<StaffEquipmentDto>>() {}.getType());
+    }
 }

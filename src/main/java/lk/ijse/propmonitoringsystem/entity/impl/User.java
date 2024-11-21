@@ -22,17 +22,18 @@ import java.util.List;
 public class User implements SuperEntity {
     @Id
     private String userName;
+    private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserFieldDetails> user_name;
-
-    @OneToMany(mappedBy = "user")
-    private List<UserFieldDetails> user_Name;
-
-    @OneToMany(mappedBy = "user")
-    private List<UserFieldDetails> username;
+//    @OneToMany(mappedBy = "user")
+////    private List<UserFieldDetails> user_name;
+////
+////    @OneToMany(mappedBy = "user")
+////    private List<UserFieldDetails> user_Name;
+////
+////    @OneToMany(mappedBy = "user")
+////    private List<UserFieldDetails> username;
 }

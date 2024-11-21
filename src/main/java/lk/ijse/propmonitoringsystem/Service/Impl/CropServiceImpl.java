@@ -11,6 +11,7 @@ import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.CropDao;
 import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
+import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
 import lk.ijse.propmonitoringsystem.entity.impl.Crop;
 import lk.ijse.propmonitoringsystem.entity.impl.Field;
 import lk.ijse.propmonitoringsystem.exception.CropNotFoundException;
@@ -72,8 +73,21 @@ public class CropServiceImpl implements CropService {
             tempCrop.get().setCropImage(tempCrop.get().getCropImage());
             tempCrop.get().setSeason(cropDto.getSeason());
 
-            Field field = mapping.toFieldEntity(cropDto.getField());
-            tempCrop.get().setField(field);
+//            Field field = mapping.toFieldEntity((FieldDto) cropDto.getField());
+//            tempCrop.get().setField(field);
         }
     }
+
+//    @Override
+//    public String generateCropCode() {
+//        String lastCode = cropDao.findLastCropCode();
+//        if (lastCode == null){
+//            return "Crop-001";
+//        }
+//        String[] parts = lastCode.split("-");
+//        int lastNumber = Integer.parseInt(parts[1]);
+//        int newNumber = lastNumber + 1;
+//
+//        return String.format("Crop-%03d", newNumber);
+//    }
 }

@@ -71,4 +71,30 @@ public class VehicleServiceImpl implements VehicleService {
             vehicleDao.deleteById(vehicleCode);
         }
     }
+
+    @Override
+    public String generatedVehicleCode() {
+        /*String lastCode = vehicleDao.findLastVehicleCode();
+        String newCode;
+
+        if (lastCode == null) {
+            newCode = "Vehicle-001";
+        } else {
+            String[] parts = lastCode.split("-");
+            int lastNumber = Integer.parseInt(parts[1]);
+            int newNumber = lastNumber + 1;
+            newCode = String.format("Vehicle-%03d", newNumber);
+        }
+
+        // Check if the code already exists in the database
+        while (vehicleDao.existsByCode(newCode)) {
+            String[] parts = newCode.split("-");
+            int lastNumber = Integer.parseInt(parts[1]);
+            int newNumber = lastNumber + 1;
+            newCode = String.format("Vehicle-%03d", newNumber);
+        }*/
+
+        return null;
+    }
+
 }

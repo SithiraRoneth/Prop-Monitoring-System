@@ -44,14 +44,16 @@ public class CropController {
             @RequestPart("cropImage") MultipartFile cropImage,
             @RequestPart("category") String category,
             @RequestPart("season") String season,
-            @RequestPart("field") FieldDto field
+            @RequestPart("field") String field
     ) {
-        System.out.println("Awa");
+
         System.out.println("cropImage" + cropImage);
         String bs64 = "";
         try {
             byte[] byteCrop = cropImage.getBytes();
             bs64 = AppUtil.generateProfilePicToBase64(byteCrop);
+
+            //String generatedCode = cropService.generateCropCode();
 
             var buildCrop = new CropDto();
             buildCrop.setCropCode(cropCode);
@@ -62,7 +64,9 @@ public class CropController {
             buildCrop.setSeason(season);
             buildCrop.setField(field);
 
+
             cropService.saveCrop(buildCrop);
+            logger.info("Crop Saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -77,7 +81,7 @@ public class CropController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "crop-code", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "{crop-code}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteCrop(@PathVariable("crop-code") String cropCode) {
         try {
             cropService.deleteCrop(cropCode);
@@ -104,7 +108,7 @@ public class CropController {
                            @RequestPart("cropImage") MultipartFile cropImage,
                            @RequestPart("category") String category,
                            @RequestPart("season") String season,
-                           @RequestPart("field") FieldDto field
+                           @RequestPart("field") List<FieldDto> field
     ) {
         System.out.println("cropImage" + cropImage);
         String bs64 = "";
@@ -117,13 +121,13 @@ public class CropController {
         }
 
         var buildCrop = new CropDto();
-        buildCrop.setCropCode(cropCode);
+        //buildCrop.setCropCode(cropCode);
         buildCrop.setCropName(cropName);
         buildCrop.setScientificName(scientificName);
         buildCrop.setCropImage(bs64);
         buildCrop.setCategory(category);
         buildCrop.setSeason(season);
-        buildCrop.setField(field);
+        //buildCrop.setField(field);
 
         cropService.updateCrop(cropCode, buildCrop);
     }

@@ -8,6 +8,8 @@ package lk.ijse.propmonitoringsystem.Controller;
 import lk.ijse.propmonitoringsystem.Service.EquipmentService;
 import lk.ijse.propmonitoringsystem.dto.EquipmentStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.EquipmentDto;
+import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
+import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
 import lk.ijse.propmonitoringsystem.entity.Status;
 import lk.ijse.propmonitoringsystem.entity.Type;
 import lk.ijse.propmonitoringsystem.entity.impl.Equipment;
@@ -32,7 +34,10 @@ public class EquipmentController {
             @RequestPart("equipmentId") String equipmentId,
             @RequestPart("equipmentName") String equipmentName,
             @RequestPart("equipmentType") String equipmentType,
-            @RequestPart("status") String status
+            @RequestPart("status") String status,
+            @RequestPart("staff") List<StaffDto>staff,
+            @RequestPart("field") List<FieldDto>field
+
     ) {
         try {
             var buildEquip = new EquipmentDto();
@@ -40,6 +45,8 @@ public class EquipmentController {
             buildEquip.setEquipmentName(equipmentName);
             buildEquip.setEquipmentType(Type.valueOf(equipmentType));
             buildEquip.setStatus(Status.valueOf(status));
+            buildEquip.setStaff(staff);
+            buildEquip.setField(field);
 
             equipmentService.saveEquipment(buildEquip);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -63,15 +70,19 @@ public class EquipmentController {
                                 @RequestPart("equipmentId") String equipmentId,
                                 @RequestPart("equipmentName") String equipmentName,
                                 @RequestPart("equipmentType") String equipmentType,
-                                @RequestPart("status") String status
+                                @RequestPart("status") String status,
+                                @RequestPart("staff") List<StaffDto>staff,
+                                @RequestPart("field") List<FieldDto>field
     ){
         try {
-            var buildEquip = new EquipmentDto();
-            buildEquip.setEquipmentId(equipmentId);
-            buildEquip.setEquipmentName(equipmentName);
-            buildEquip.setEquipmentType(Type.valueOf(equipmentType));
-            buildEquip.setStatus(Status.valueOf(status));
-            equipmentService.updateEquipment(equipmentId,buildEquip);
+            var UpdateEquip = new EquipmentDto();
+            UpdateEquip.setEquipmentId(equipmentId);
+            UpdateEquip.setEquipmentName(equipmentName);
+            UpdateEquip.setEquipmentType(Type.valueOf(equipmentType));
+            UpdateEquip.setStatus(Status.valueOf(status));
+            UpdateEquip.setStaff(staff);
+            UpdateEquip.setField(field);
+            equipmentService.updateEquipment(equipmentId,UpdateEquip);
         }catch (Exception e){
             throw new RuntimeException("Equipment didn't updated");
         }
