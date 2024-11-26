@@ -47,10 +47,10 @@ public class StaffServiceImpl implements StaffService {
             staff.setJoinedDate(staffDto.getJoinedDate());
             staff.setDob(staffDto.getDob());
             staff.setAddressLine1(staffDto.getAddressLine1());
-            staff.setAddressLine2(staffDto.getAddressLine2());
-            staff.setAddressLine3(staffDto.getAddressLine3());
-            staff.setAddressLine4(staffDto.getAddressLine4());
-            staff.setAddressLine5(staffDto.getAddressLine5());
+//            staff.setAddressLine2(staffDto.getAddressLine2());
+//            staff.setAddressLine3(staffDto.getAddressLine3());
+//            staff.setAddressLine4(staffDto.getAddressLine4());
+//            staff.setAddressLine5(staffDto.getAddressLine5());
             staff.setContactNo(staffDto.getContactNo());
             staff.setEmail(staffDto.getEmail());
             staff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
