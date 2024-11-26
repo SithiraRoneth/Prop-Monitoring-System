@@ -10,16 +10,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="userMonitoringLogDetails")
-public class UserMonitoringLogDetails implements SuperEntity {
+@Table(name="userStaffDetails")
+public class UserStaffDetails implements SuperEntity {
     @Id
-    private String userMoniterId;
+    private String userStaffId;
+    private String role;
 
     @ManyToOne
     @JoinColumn(name = "username",nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "lod_code",nullable = false)
-    private MonitoringLog monitoringLog;
+    @JoinColumn(name = "staffId",nullable = false)
+    private Staff staff;
 }
