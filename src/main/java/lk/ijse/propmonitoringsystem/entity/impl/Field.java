@@ -23,18 +23,12 @@ public class Field implements SuperEntity {
     private String fieldLocation;
     private Double extendSizeOfTheField;
 
-//    @OneToMany(mappedBy = "field")
-//    private List<Crop> Field_Code;
-//
     @OneToMany(mappedBy = "field")
-    private List<StaffFieldDetails> fieldCode;
-//
-//    @OneToMany(mappedBy = "field")
-//    private List<FieldEquipmentDetails> field_code;
+    private List<CropFieldDetails> fieldCode;
 
     private String fieldImage1;
     private String fieldImage2;
 
-//    @OneToMany(mappedBy = "field")
-//    private List<UserFieldDetails> field_code;
+    @OneToMany(mappedBy = "field")
+    private List<EquipmentManage> Field_Code;
 }

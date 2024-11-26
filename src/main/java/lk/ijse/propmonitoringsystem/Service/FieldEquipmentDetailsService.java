@@ -1,7 +1,6 @@
 package lk.ijse.propmonitoringsystem.Service;
 
 import lk.ijse.propmonitoringsystem.dto.impl.FieldEquipmentDetailsDto;
-import lk.ijse.propmonitoringsystem.entity.impl.FieldEquipmentDetails;
 
 import java.util.List;
 

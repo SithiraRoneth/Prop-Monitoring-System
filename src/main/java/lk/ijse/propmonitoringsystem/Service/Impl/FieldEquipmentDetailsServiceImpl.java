@@ -9,7 +9,7 @@ import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.FieldEquipmentDetailsService;
 import lk.ijse.propmonitoringsystem.dao.FieldEquipmentDetailsDao;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldEquipmentDetailsDto;
-import lk.ijse.propmonitoringsystem.entity.impl.FieldEquipmentDetails;
+import lk.ijse.propmonitoringsystem.entity.impl.EquipmentManage;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class FieldEquipmentDetailsServiceImpl implements FieldEquipmentDetailsSe
     private FieldEquipmentDetailsDao fieldEquipmentDetailsDao;
     @Override
     public void saveFieldEquipmentDetails(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
-        FieldEquipmentDetails saveFieldEquipmentDetails = fieldEquipmentDetailsDao.save(mapping.toFieldEquipmentDetailsEntity(fieldEquipmentDetailsDto));
+        EquipmentManage saveFieldEquipmentDetails = fieldEquipmentDetailsDao.save(mapping.toFieldEquipmentDetailsEntity(fieldEquipmentDetailsDto));
         if (saveFieldEquipmentDetails == null) {
             throw new DataPersistException("Field equipment details not saved");
         }
@@ -34,7 +34,7 @@ public class FieldEquipmentDetailsServiceImpl implements FieldEquipmentDetailsSe
 
     @Override
     public List<FieldEquipmentDetailsDto> getAllFieldEquipmentDetails() {
-        List<FieldEquipmentDetails> all = fieldEquipmentDetailsDao.findAll();
+        List<EquipmentManage> all = fieldEquipmentDetailsDao.findAll();
         return mapping.FieldEquipmentDetailsList(all);
     }
 }

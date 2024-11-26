@@ -7,7 +7,6 @@ package lk.ijse.propmonitoringsystem.Controller;
 
 import lk.ijse.propmonitoringsystem.Service.FieldEquipmentDetailsService;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldEquipmentDetailsDto;
-import lk.ijse.propmonitoringsystem.entity.impl.FieldEquipmentDetails;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

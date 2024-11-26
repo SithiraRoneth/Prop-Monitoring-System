@@ -15,18 +15,13 @@ import java.util.List;
 @Table(name = "vehicle")
 public class Vehicle implements SuperEntity {
     @Id
-    private String vehicleCode;
     private String licensePlateNo;
     private String vehicleCategory;
     private String fuelType;
     private String status;
-
-//    @ManyToOne
-//    @JoinColumn(name = "vehicle_Code",nullable = false)
-//    private Staff staff;
-
     private String remarks;
 
-//    @OneToMany(mappedBy = "vehicle")
-//    private List<UserVehicleDetails> vehicle_code;
+    @ManyToOne
+    @JoinColumn(name = "staff", nullable = false)
+    private Staff staff;
 }

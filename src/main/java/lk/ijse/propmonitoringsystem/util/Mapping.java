@@ -80,13 +80,13 @@ public class Mapping {
         return modelMapper.map(monitoringLogs, new TypeToken<List<MonitoringLogDto>>() {}.getType());
     }
     // fieldEquipmentDetails
-    public FieldEquipmentDetails toFieldEquipmentDetailsEntity(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
-        return modelMapper.map(fieldEquipmentDetailsDto, FieldEquipmentDetails.class);
+    public EquipmentManage toFieldEquipmentDetailsEntity(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
+        return modelMapper.map(fieldEquipmentDetailsDto, EquipmentManage.class);
     }
-    public FieldEquipmentDetailsDto toFieldEquipmentDetailsDto(FieldEquipmentDetails fieldEquipmentDetails) {
+    public FieldEquipmentDetailsDto toFieldEquipmentDetailsDto(EquipmentManage fieldEquipmentDetails) {
         return modelMapper.map(fieldEquipmentDetails, FieldEquipmentDetailsDto.class);
     }
-    public List<FieldEquipmentDetailsDto> FieldEquipmentDetailsList(List<FieldEquipmentDetails> fieldEquipmentDetailsList) {
+    public List<FieldEquipmentDetailsDto> FieldEquipmentDetailsList(List<EquipmentManage> fieldEquipmentDetailsList) {
         return modelMapper.map(fieldEquipmentDetailsList, new TypeToken<List<FieldEquipmentDetailsDto>>() {}.getType());
     }
 

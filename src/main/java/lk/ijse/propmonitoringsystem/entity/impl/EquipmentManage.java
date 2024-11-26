@@ -10,16 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "FieldEquipmentDetails")
-public class FieldEquipmentDetails implements SuperEntity {
+@Table(name = "EquipmentManage")
+public class EquipmentManage implements SuperEntity {
     @Id
-    private String fieldDetailsId;
+    private String EqManageId;
 
     @ManyToOne
-    @JoinColumn(name = "filed_code", nullable = false)
+    @JoinColumn(name = "Field_Code", nullable = false)
     private Field field;
 
     @ManyToOne
-    @JoinColumn(name = "equipment_id", nullable = false)
+    @JoinColumn(name = "equipmentId", nullable = false)
     private Equipment equipment;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_Id", nullable = false)
+    private Staff staff;
 }

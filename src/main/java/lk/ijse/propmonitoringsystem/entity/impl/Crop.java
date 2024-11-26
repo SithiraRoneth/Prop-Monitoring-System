@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
@@ -16,12 +18,13 @@ public class Crop implements SuperEntity{
     private String cropCode;
     private String cropName;
     private String scientificName;
+
     @Column(columnDefinition = "LONGTEXT")
     private String cropImage;
+
     private String category;
     private String season;
 
-    @ManyToOne
-    @JoinColumn(name = "Field_Code",nullable = false)
-    private Field field;
+    @OneToMany(mappedBy = "crop")
+    private List<CropFieldDetails> cropId;
 }

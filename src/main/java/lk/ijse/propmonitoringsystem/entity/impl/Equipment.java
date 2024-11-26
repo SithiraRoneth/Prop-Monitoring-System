@@ -27,11 +27,9 @@ public class Equipment implements SuperEntity {
     private Status status;
 
     @OneToMany(mappedBy = "equipment")
-    private List<FieldEquipmentDetails> field;
-
-    @OneToMany(mappedBy = "equipment")
-    private List<StaffEquipmentDetails> equipment_id;
+    private List<EquipmentManage> equipmentId;
 
 //    @OneToMany(mappedBy = "equipment")
-//    private List<UserEquipmentDetails> equipment_code;
+//    private List<StaffEquipmentDetails> equipment_id;
+
 }
