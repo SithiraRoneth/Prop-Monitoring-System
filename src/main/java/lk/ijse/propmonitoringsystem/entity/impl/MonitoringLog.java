@@ -1,9 +1,6 @@
 package lk.ijse.propmonitoringsystem.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +21,10 @@ public class MonitoringLog implements SuperEntity {
     private String logDetails;
     private String observedImage;
 
-    @OneToMany(mappedBy = "monitoringLog")
-    private List<UserMonitoringLogDetails> lod_code;
+//    @OneToMany(mappedBy = "monitoringLog")
+//    private List<UserMonitoringLogDetails> lod_code;
+
+    @ManyToOne
+    @JoinColumn(name = "userId",nullable = false)
+    private User user;
 }
