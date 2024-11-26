@@ -109,6 +109,17 @@ public class Mapping {
         return modelMapper.map(staffFieldDetails, StaffFieldDetailsDto.class);
     }
     public List<StaffFieldDetailsDto> StaffFieldDetailsList(List<StaffFieldDetails> staffFieldDetailsList) {
-        return modelMapper.map(staffFieldDetailsList, new TypeToken<List<StaffEquipmentDto>>() {}.getType());
+        return modelMapper.map(staffFieldDetailsList, new TypeToken<List<StaffFieldDetailsDto>>() {}.getType());
+    }
+
+    // userStaffDetails
+    public UserStaffDetails toUserStaffDetailsEntity(UserStaffDetailsDto userStaffDetailsDto) {
+        return modelMapper.map(userStaffDetailsDto, UserStaffDetails.class);
+    }
+    public UserStaffDetailsDto toUserStaffDetailsDto(UserStaffDetails userStaffDetails) {
+        return modelMapper.map(userStaffDetails, UserStaffDetailsDto.class);
+    }
+    public List<UserStaffDetailsDto> UserStaffDetailsList(List<UserStaffDetails> userStaffDetailsList) {
+        return modelMapper.map(userStaffDetailsList, new TypeToken<List<UserStaffDetailsDto>>() {}.getType());
     }
 }
