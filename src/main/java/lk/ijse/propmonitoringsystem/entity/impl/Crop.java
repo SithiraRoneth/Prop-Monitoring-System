@@ -26,5 +26,5 @@ public class Crop implements SuperEntity{
     private String season;
 
     @OneToMany(mappedBy = "crop")
-    private List<CropFieldDetails> cropId;
+    private List<CropFieldDetails> crop_Code;
 }

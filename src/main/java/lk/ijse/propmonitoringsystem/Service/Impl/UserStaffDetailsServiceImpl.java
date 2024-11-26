@@ -32,6 +32,6 @@ public class UserStaffDetailsServiceImpl implements UserStaffDetailsService {
     @Override
     public List<UserStaffDetailsDto> getAllUserStaffDetails() {
         List<UserStaffDetails> allUserStaffDetails = userStaffDetailsDao.findAll();
-        return mapping.UserStaffDetailsList(allUserStaffDetails);
+        return mapping.toUserStaffDetailsDtoList(allUserStaffDetails);
     }
 }

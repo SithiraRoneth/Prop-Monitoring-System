@@ -30,24 +30,15 @@ public class EquipmentController {
     private EquipmentService equipmentService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> saveEquipment(
-            @RequestPart("equipmentId") String equipmentId,
-            @RequestPart("equipmentName") String equipmentName,
-            @RequestPart("equipmentType") String equipmentType,
-            @RequestPart("status") String status,
-            @RequestPart("staff") List<StaffDto>staff,
-            @RequestPart("field") List<FieldDto>field
-
-    ) {
+    public ResponseEntity<Void> saveEquipment(@RequestBody EquipmentDto equipmentDto) {
         try {
             var buildEquip = new EquipmentDto();
-            buildEquip.setEquipmentId(equipmentId);
-            buildEquip.setEquipmentName(equipmentName);
-            buildEquip.setEquipmentType(Type.valueOf(equipmentType));
-            buildEquip.setStatus(Status.valueOf(status));
-            buildEquip.setStaff(staff);
-            buildEquip.setField(field);
 
+            buildEquip.setEquipmentId(equipmentDto.getEquipmentId());
+            buildEquip.setEquipmentName(equipmentDto.getEquipmentName());
+            buildEquip.setEquipmentType(Type.valueOf(String.valueOf(equipmentDto.getEquipmentType())));
+            buildEquip.setStatus(Status.valueOf(String.valueOf(equipmentDto.getStatus())));
+            System.out.println(buildEquip);
             equipmentService.saveEquipment(buildEquip);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
@@ -70,9 +61,8 @@ public class EquipmentController {
                                 @RequestPart("equipmentId") String equipmentId,
                                 @RequestPart("equipmentName") String equipmentName,
                                 @RequestPart("equipmentType") String equipmentType,
-                                @RequestPart("status") String status,
-                                @RequestPart("staff") List<StaffDto>staff,
-                                @RequestPart("field") List<FieldDto>field
+                                @RequestPart("status") String status
+
     ){
         try {
             var UpdateEquip = new EquipmentDto();
@@ -80,8 +70,6 @@ public class EquipmentController {
             UpdateEquip.setEquipmentName(equipmentName);
             UpdateEquip.setEquipmentType(Type.valueOf(equipmentType));
             UpdateEquip.setStatus(Status.valueOf(status));
-            UpdateEquip.setStaff(staff);
-            UpdateEquip.setField(field);
             equipmentService.updateEquipment(equipmentId,UpdateEquip);
         }catch (Exception e){
             throw new RuntimeException("Equipment didn't updated");

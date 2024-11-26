@@ -38,13 +38,12 @@ public class CropController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveCrop(
-            @RequestPart("cropCode") String cropCode,
+            @RequestPart("crop_code") String cropCode,
             @RequestPart("cropName") String cropName,
             @RequestPart("scientificName") String scientificName,
             @RequestPart("cropImage") MultipartFile cropImage,
             @RequestPart("category") String category,
-            @RequestPart("season") String season,
-            @RequestPart("field") String field
+            @RequestPart("season") String season
     ) {
 
         System.out.println("cropImage" + cropImage);
@@ -62,8 +61,6 @@ public class CropController {
             buildCrop.setCropImage(bs64);
             buildCrop.setCategory(category);
             buildCrop.setSeason(season);
-            buildCrop.setField(field);
-
 
             cropService.saveCrop(buildCrop);
             logger.info("Crop Saved");

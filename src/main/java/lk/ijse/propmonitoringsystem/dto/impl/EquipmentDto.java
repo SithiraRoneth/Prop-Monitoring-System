@@ -22,7 +22,5 @@ public class EquipmentDto implements EquipmentStatus {
     private String equipmentName;
     private Type equipmentType;
     private Status status;
-    private List<StaffDto> staff;
-    private List<FieldDto> field;
 
 }

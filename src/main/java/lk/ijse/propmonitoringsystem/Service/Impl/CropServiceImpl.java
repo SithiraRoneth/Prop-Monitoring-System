@@ -31,7 +31,9 @@ public class CropServiceImpl implements CropService {
     private Mapping mapping;
     @Override
     public void saveCrop(CropDto cropDto) {
+//        System.out.println("crop service"+cropDto);
         Crop savedCrop = cropDao.save(mapping.toCropEntity(cropDto));
+        System.out.println("hfgdjyfu"+savedCrop);
         if (savedCrop == null){
             throw new RuntimeException("Save crop failed");
         }
@@ -50,7 +52,7 @@ public class CropServiceImpl implements CropService {
     @Override
     public List<CropDto> getAllCrops() {
         List<Crop> allCrops = cropDao.findAll();
-        return mapping.cropDtoList(allCrops);
+        return mapping.toCropDtoList(allCrops);
     }
 
     @Override

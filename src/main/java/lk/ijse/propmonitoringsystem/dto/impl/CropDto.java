@@ -23,5 +23,4 @@ public class CropDto implements CropStatus {
     private String category;
     private String season;
     //private List<FieldDto> field;
-    private String field;
 }

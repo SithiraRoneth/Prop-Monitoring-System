@@ -18,4 +18,8 @@ public class AppUtil {
     public String generateUserStaffId(){
         return null;
     }
+
+    public static String generateEqId(){
+        return "Eq001";
+    }
 }

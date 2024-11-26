@@ -35,6 +35,6 @@ public class FieldEquipmentDetailsServiceImpl implements FieldEquipmentDetailsSe
     @Override
     public List<FieldEquipmentDetailsDto> getAllFieldEquipmentDetails() {
         List<EquipmentManage> all = fieldEquipmentDetailsDao.findAll();
-        return mapping.FieldEquipmentDetailsList(all);
+        return mapping.toFieldEquipmentDetailsDtoList(all);
     }
 }

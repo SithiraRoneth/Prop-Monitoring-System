@@ -6,20 +6,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="equipmentDetails")
-public class StaffEquipmentDetails implements SuperEntity {
+@Table(name = "DutyManage")
+public class DutyManage implements SuperEntity {
     @Id
-    private String eqDetailsId;
+    private String duty_id;
+    private Date date;
+    private String timePeriod;
+    private String duty;
 
     @ManyToOne
-    @JoinColumn(name = "StaffId",nullable = false)
+    @JoinColumn(name = "staffId",nullable = false)
     private Staff staff;
 
     @ManyToOne
-    @JoinColumn(name = "equipmentId",nullable = false)
-    private Equipment equipment;
+    @JoinColumn(name = "fieldCode",nullable = false)
+    private Field field;
 }

@@ -20,7 +20,7 @@ public class EquipmentManage implements SuperEntity {
     private Field field;
 
     @ManyToOne
-    @JoinColumn(name = "equipmentId", nullable = false)
+    @JoinColumn(name = "equipment_Id", nullable = false)
     private Equipment equipment;
 
     @ManyToOne

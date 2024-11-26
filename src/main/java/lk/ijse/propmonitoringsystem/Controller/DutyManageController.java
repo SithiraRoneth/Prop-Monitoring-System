@@ -7,7 +7,6 @@ package lk.ijse.propmonitoringsystem.Controller;
 
 import lk.ijse.propmonitoringsystem.Service.StaffFieldDetailsService;
 import lk.ijse.propmonitoringsystem.dto.impl.StaffFieldDetailsDto;
-import lk.ijse.propmonitoringsystem.entity.impl.StaffFieldDetails;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,11 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("api/v1/staffField")
-public class StaffFieldDetailsController {
+@RequestMapping("api/v1/dutyManage")
+public class DutyManageController {
     @Autowired
     private StaffFieldDetailsService staffFieldDetailsService;
 

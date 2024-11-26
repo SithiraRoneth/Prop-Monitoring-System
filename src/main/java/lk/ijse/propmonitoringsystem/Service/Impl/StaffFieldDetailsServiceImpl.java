@@ -9,7 +9,7 @@ import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.StaffFieldDetailsService;
 import lk.ijse.propmonitoringsystem.dao.StaffFieldDetailsDao;
 import lk.ijse.propmonitoringsystem.dto.impl.StaffFieldDetailsDto;
-import lk.ijse.propmonitoringsystem.entity.impl.StaffFieldDetails;
+import lk.ijse.propmonitoringsystem.entity.impl.DutyManage;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class StaffFieldDetailsServiceImpl implements StaffFieldDetailsService {
     private StaffFieldDetailsDao staffFieldDetailsdao;
     @Override
     public void saveStaffFieldDetails(StaffFieldDetailsDto staffFieldDetailsDto) {
-        StaffFieldDetails save = staffFieldDetailsdao.save(mapping.toStaffFieldDetailsEntity(staffFieldDetailsDto));
+        DutyManage save = staffFieldDetailsdao.save(mapping.toStaffFieldDetailsEntity(staffFieldDetailsDto));
         if (save == null) {
             throw new DataPersistException("save staff field details failed");
         }
@@ -34,7 +34,7 @@ public class StaffFieldDetailsServiceImpl implements StaffFieldDetailsService {
 
     @Override
     public List<StaffFieldDetailsDto> getAllStaffFieldDetails() {
-        List<StaffFieldDetails> all = staffFieldDetailsdao.findAll();
-        return mapping.StaffFieldDetailsList(all);
+        List<DutyManage> all = staffFieldDetailsdao.findAll();
+        return mapping.toStaffFieldDetailsDtoList(all);
     }
 }

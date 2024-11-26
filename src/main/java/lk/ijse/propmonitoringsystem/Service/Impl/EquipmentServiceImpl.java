@@ -5,12 +5,14 @@
  * */
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
+import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.EquipmentService;
 import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.EquipmentDao;
 import lk.ijse.propmonitoringsystem.dto.EquipmentStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.EquipmentDto;
 import lk.ijse.propmonitoringsystem.entity.impl.Equipment;
+import lk.ijse.propmonitoringsystem.util.AppUtil;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class EquipmentServiceImpl implements EquipmentService {
     @Autowired
     private EquipmentDao equipmentDao;
@@ -27,7 +30,9 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public void saveEquipment(EquipmentDto equipmentDto) {
+        System.out.println(equipmentDto);
         Equipment savedEquip = equipmentDao.save(mapping.toEquipmentEntity(equipmentDto));
+        System.out.println(savedEquip);
         if (savedEquip == null) {
             throw new RuntimeException("Save equipment failed");
         }

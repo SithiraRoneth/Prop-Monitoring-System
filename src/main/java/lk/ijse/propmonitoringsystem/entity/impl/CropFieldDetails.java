@@ -24,6 +24,6 @@ public class CropFieldDetails {
     private Field field;
 
     @ManyToOne
-    @JoinColumn(name = "cropId", nullable = false)
+    @JoinColumn(name = "crop_Code", nullable = false)
     private Crop crop;
 }

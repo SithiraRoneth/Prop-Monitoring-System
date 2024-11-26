@@ -17,7 +17,7 @@ import java.util.List;
 @Table(name = "equipment")
 public class Equipment implements SuperEntity {
     @Id
-    private String eqId;
+    private String equipmentId;
     private String equipmentName;
 
     @Enumerated(EnumType.STRING)
@@ -27,7 +27,7 @@ public class Equipment implements SuperEntity {
     private Status status;
 
     @OneToMany(mappedBy = "equipment")
-    private List<EquipmentManage> equipmentId;
+    private List<EquipmentManage> equipment_Id;
 
 //    @OneToMany(mappedBy = "equipment")
 //    private List<StaffEquipmentDetails> equipment_id;
