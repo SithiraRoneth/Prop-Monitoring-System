@@ -14,4 +14,8 @@ public class AppUtil {
     public String generateCropCode(){
         return null;
     }
+
+    public String generateUserStaffId(){
+        return null;
+    }
 }
