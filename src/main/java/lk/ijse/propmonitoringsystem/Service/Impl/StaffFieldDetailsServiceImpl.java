@@ -23,10 +23,10 @@ public class StaffFieldDetailsServiceImpl implements StaffFieldDetailsService {
     @Autowired
     private Mapping mapping;
     @Autowired
-    private StaffFieldDetailsDao staffFieldDetailsDao;
+    private StaffFieldDetailsDao staffFieldDetailsdao;
     @Override
     public void saveStaffFieldDetails(StaffFieldDetailsDto staffFieldDetailsDto) {
-        StaffFieldDetails save = staffFieldDetailsDao.save(mapping.toStaffFieldDetailsEntity(staffFieldDetailsDto));
+        StaffFieldDetails save = staffFieldDetailsdao.save(mapping.toStaffFieldDetailsEntity(staffFieldDetailsDto));
         if (save == null) {
             throw new DataPersistException("save staff field details failed");
         }
@@ -34,7 +34,7 @@ public class StaffFieldDetailsServiceImpl implements StaffFieldDetailsService {
 
     @Override
     public List<StaffFieldDetailsDto> getAllStaffFieldDetails() {
-        List<StaffFieldDetails> all = staffFieldDetailsDao.findAll();
+        List<StaffFieldDetails> all = staffFieldDetailsdao.findAll();
         return mapping.StaffFieldDetailsList(all);
     }
 }
