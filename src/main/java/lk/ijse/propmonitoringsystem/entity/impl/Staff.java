@@ -31,10 +31,6 @@ public class Staff implements SuperEntity {
     private Date joinedDate;
     private Date Dob;
     private String addressLine1;
-    private String addressLine2;
-    private String addressLine3;
-    private String addressLine4;
-    private String addressLine5;
     private String contactNo;
     private String email;
 
