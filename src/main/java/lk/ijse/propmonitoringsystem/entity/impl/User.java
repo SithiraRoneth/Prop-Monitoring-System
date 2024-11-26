@@ -28,6 +28,9 @@ public class User implements SuperEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "user")
+    private List<MonitoringLog> moniLogId;
+
 //    @OneToMany(mappedBy = "user")
 ////    private List<UserFieldDetails> user_name;
 ////
