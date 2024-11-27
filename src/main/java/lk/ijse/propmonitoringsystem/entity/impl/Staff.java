@@ -23,14 +23,17 @@ import java.util.List;
 @Table(name = "staff")
 public class Staff implements SuperEntity {
     @Id
-    private String staff_id;
+    private String staffId;
     private String firstName;
     private String lastName;
     private String designation;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private Date joinedDate;
-    private Date Dob;
-    private String addressLine1;
+    private Date dob;
+    private String address;
     private String contactNo;
     private String email;
 
@@ -38,11 +41,11 @@ public class Staff implements SuperEntity {
     private Role role;
 
     @OneToMany(mappedBy = "staff")
-    private List<DutyManage> staffId;
+    private List<DutyManage> staff_Id;
 
     @OneToMany(mappedBy = "staff")
     private List<Vehicle> vehicleCode;
 
     @OneToMany(mappedBy = "staff")
-    private List<EquipmentManage> staff_Id;
+    private List<EquipmentManage> staff_id;
 }

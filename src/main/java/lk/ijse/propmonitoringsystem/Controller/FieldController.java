@@ -7,8 +7,8 @@ package lk.ijse.propmonitoringsystem.Controller;
 
 import lk.ijse.propmonitoringsystem.Service.FieldService;
 import lk.ijse.propmonitoringsystem.dto.FieldStatus;
-import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
+import lk.ijse.propmonitoringsystem.entity.impl.Field;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.exception.FieldNotFoundException;
 import lk.ijse.propmonitoringsystem.util.AppUtil;
@@ -28,41 +28,70 @@ import java.util.List;
 public class FieldController {
     @Autowired
     private FieldService fieldService;
+//    private final Logger logger = LoggerFactory.getLogger(FieldController.class);
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> saveField(
-            @RequestPart("fieldCode") String fieldCode,
-            @RequestPart("fieldName") String fieldName,
-            @RequestPart("fieldLocation") Point fieldLocation,
-            @RequestPart("extendSizeOfTheField") Double extendSizeOfTheField,
-            @RequestPart("fieldImage1") MultipartFile fieldImage1,
-            @RequestPart("fieldImage2") MultipartFile fieldImage2
-    ) {
-        String b1 = "";
-        String b2 = "";
+//    @GetMapping
+//    public String FieldController() {
+//        return "OK";
+//    }
+//
+//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Void> saveField(
+//            @RequestPart("fieldCode") String fieldCode,
+//            @RequestPart("fieldName") String fieldName,
+//            @RequestPart("fieldLocation") Point fieldLocation,
+//            @RequestPart("extendSizeOfTheField") Double extendSizeOfTheField,
+//            @RequestPart("fieldImage1") MultipartFile fieldImage1,
+//            @RequestPart("fieldImage2") MultipartFile fieldImage2
+//    ) {
+//        System.out.println("ava");
+//        String b1 = "";
+//        String b2 = "";
+//        try {
+//            byte[] image1 = fieldImage1.getBytes();
+//            byte[] image2 = fieldImage2.getBytes();
+//            b1 = AppUtil.generateProfilePicToBase64(image1);
+//            b2 = AppUtil.generateProfilePicToBase64(image2);
+//
+//            var buildField = new FieldDto();
+//            buildField.setFieldCode(fieldCode);
+//            buildField.setFieldName(fieldName);
+//            buildField.setFieldLocation(fieldLocation);
+//            buildField.setExtendSizeOfTheField(extendSizeOfTheField);
+//            buildField.setFieldImage1(b1);
+//            buildField.setFieldImage2(b2);
+//            System.out.println(buildField);
+//
+//            fieldService.saveField(buildField);
+//            logger.info("Field Saved");
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (DataPersistException e) {
+//            System.out.println("ava");
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        } catch (Exception e) {
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FieldDto> createField(@RequestBody FieldDto fieldDto) throws DataPersistException {
         try {
-            byte[] image1 = fieldImage1.getBytes();
-            byte[] image2 = fieldImage2.getBytes();
-            b1 = AppUtil.generateProfilePicToBase64(image1);
-            b2 = AppUtil.generateProfilePicToBase64(image2);
-
             var buildField = new FieldDto();
-            buildField.setFieldCode(fieldCode);
-            buildField.setFieldName(fieldName);
-            buildField.setFieldLocation(fieldLocation);
-            buildField.setExtendSizeOfTheField(extendSizeOfTheField);
-            buildField.setFieldImage1(b1);
-            buildField.setFieldImage2(b2);
 
+            buildField.setFieldCode(fieldDto.getFieldCode());
+            buildField.setFieldName(fieldDto.getFieldName());
+            buildField.setFieldLocation(fieldDto.getFieldLocation());
+            buildField.setExtendSizeOfTheField(fieldDto.getExtendSizeOfTheField());
+            buildField.setFieldImage1(fieldDto.getFieldImage1());
+            buildField.setFieldImage2(fieldDto.getFieldImage2());
             fieldService.saveField(buildField);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(buildField, HttpStatus.CREATED);
         } catch (DataPersistException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @GetMapping(value = "{fieldCode}", produces = MediaType.APPLICATION_JSON_VALUE)
     public FieldStatus getSelectedField(@PathVariable("fieldCode") String fieldCode) {
         return fieldService.getSelectedField(fieldCode);

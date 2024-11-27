@@ -46,7 +46,7 @@ public class StaffServiceImpl implements StaffService {
             staff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
             staff.setJoinedDate(staffDto.getJoinedDate());
             staff.setDob(staffDto.getDob());
-            staff.setAddressLine1(staffDto.getAddressLine1());
+            staff.setAddress(staffDto.getAddress());
 //            staff.setAddressLine2(staffDto.getAddressLine2());
 //            staff.setAddressLine3(staffDto.getAddressLine3());
 //            staff.setAddressLine4(staffDto.getAddressLine4());

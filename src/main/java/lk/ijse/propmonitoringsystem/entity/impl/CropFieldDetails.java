@@ -20,7 +20,7 @@ public class CropFieldDetails {
     private String cropFieldId;
 
     @ManyToOne
-    @JoinColumn(name = "filedCode", nullable = false)
+    @JoinColumn(name = "filed_Code", nullable = false)
     private Field field;
 
     @ManyToOne

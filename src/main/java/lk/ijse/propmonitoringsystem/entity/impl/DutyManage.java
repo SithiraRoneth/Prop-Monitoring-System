@@ -21,7 +21,7 @@ public class DutyManage implements SuperEntity {
     private String duty;
 
     @ManyToOne
-    @JoinColumn(name = "staffId",nullable = false)
+    @JoinColumn(name = "staff_Id",nullable = false)
     private Staff staff;
 
     @ManyToOne

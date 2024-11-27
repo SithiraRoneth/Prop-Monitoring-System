@@ -1,14 +1,12 @@
 package lk.ijse.propmonitoringsystem.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.propmonitoringsystem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.awt.*;
 import java.util.List;
 
 @Data
@@ -18,15 +16,18 @@ import java.util.List;
 @Table(name = "field")
 public class Field implements SuperEntity {
     @Id
-    private String field_Code;
+    private String fieldCode;
     private String fieldName;
-    private String fieldLocation;
+    private Point fieldLocation;
     private Double extendSizeOfTheField;
 
     @OneToMany(mappedBy = "field")
-    private List<CropFieldDetails> fieldCode;
+    private List<CropFieldDetails> field_Code;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String fieldImage1;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String fieldImage2;
 
     @OneToMany(mappedBy = "field")

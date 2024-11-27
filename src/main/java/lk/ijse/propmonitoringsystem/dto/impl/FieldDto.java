@@ -21,8 +21,6 @@ public class FieldDto implements FieldStatus {
     private String fieldName;
     private Point fieldLocation;
     private Double extendSizeOfTheField;
-    private List<CropDto> crops;
-    private List<StaffDto> staffs;
     private String fieldImage1;
     private String fieldImage2;
 }

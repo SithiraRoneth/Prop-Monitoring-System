@@ -5,6 +5,7 @@
  * */
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
+import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.FieldService;
 import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.FieldDao;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class FieldServiceImpl implements FieldService {
     @Autowired
     private FieldDao fieldDao;
@@ -55,7 +57,7 @@ public class FieldServiceImpl implements FieldService {
         if (tempField.isPresent()) {
             Field field = tempField.get();
             field.setFieldName(fieldDto.getFieldName());
-            field.setFieldLocation(String.valueOf(fieldDto.getFieldLocation()));
+            field.setFieldLocation(fieldDto.getFieldLocation());
             field.setExtendSizeOfTheField(fieldDto.getExtendSizeOfTheField());
             field.setFieldImage1(fieldDto.getFieldImage1());
             field.setFieldImage2(fieldDto.getFieldImage2());

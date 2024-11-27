@@ -12,12 +12,15 @@ import lk.ijse.propmonitoringsystem.entity.Gender;
 import lk.ijse.propmonitoringsystem.entity.Role;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.exception.StaffNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,8 +29,22 @@ public class StaffController {
     @Autowired
     private StaffService staffService;
 
+//    private Logger logger = LoggerFactory.getLogger(StaffController.class);
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveStaff(@RequestBody StaffDto staffDto) {
+//            @RequestPart("staff_id") String staffId,
+//            @RequestPart("first_name") String firstName,
+//            @RequestPart("last_name") String lastName,
+//            @RequestPart("designation") String designation,
+//            @RequestPart("gender") String gender,
+//            @RequestPart("joined_date") Date joinedDate,
+//            @RequestPart("dob") Date dob,
+//            @RequestPart("address") String address,
+//            @RequestPart("contact_no") String contactNo,
+//            @RequestPart("email") String email,
+//            @RequestPart("role") String role
+//            ) {
         try {
             var buildStaff = new StaffDto();
             buildStaff.setStaffId(staffDto.getStaffId());
@@ -37,17 +54,28 @@ public class StaffController {
             buildStaff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
             buildStaff.setJoinedDate(staffDto.getJoinedDate());
             buildStaff.setDob(staffDto.getDob());
-            buildStaff.setAddressLine1(staffDto.getAddressLine1());
-            buildStaff.setAddressLine2(staffDto.getAddressLine2());
-            buildStaff.setAddressLine3(staffDto.getAddressLine3());
-            buildStaff.setAddressLine4(staffDto.getAddressLine4());
-            buildStaff.setAddressLine5(staffDto.getAddressLine5());
+            buildStaff.setAddress(staffDto.getAddress());
             buildStaff.setContactNo(staffDto.getContactNo());
             buildStaff.setEmail(staffDto.getEmail());
             buildStaff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
-
+//            System.out.println(buildStaff);
+//            System.out.println(role);
+//            buildStaff.setStaffId(staffId);
+//            buildStaff.setFirstName(firstName);
+//            buildStaff.setLastName(lastName);
+//            buildStaff.setDesignation(designation);
+//            buildStaff.setGender(Gender.valueOf(gender));
+//            buildStaff.setJoinedDate(joinedDate);
+//            buildStaff.setDob(dob);
+//            buildStaff.setAddress(address);
+//            buildStaff.setContactNo(contactNo);
+//            buildStaff.setEmail(email);
+//            buildStaff.setRole(Role.valueOf(role));
             staffService.saveStaff(buildStaff);
+            System.out.println(buildStaff);
+//            logger.info("staff saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
+
         } catch (DataPersistException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
@@ -90,11 +118,7 @@ public class StaffController {
             buildStaff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
             buildStaff.setJoinedDate(staffDto.getJoinedDate());
             buildStaff.setDob(staffDto.getDob());
-            buildStaff.setAddressLine1(staffDto.getAddressLine1());
-            buildStaff.setAddressLine2(staffDto.getAddressLine2());
-            buildStaff.setAddressLine3(staffDto.getAddressLine3());
-            buildStaff.setAddressLine4(staffDto.getAddressLine4());
-            buildStaff.setAddressLine5(staffDto.getAddressLine5());
+            buildStaff.setAddress(staffDto.getAddress());
             buildStaff.setContactNo(staffDto.getContactNo());
             buildStaff.setEmail(staffDto.getEmail());
             buildStaff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
