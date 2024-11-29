@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.StringReader;
 import java.util.Date;
 
 @Data
@@ -22,7 +23,7 @@ public class StaffDto implements StaffStatus {
     private String firstName;
     private String lastName;
     private String designation;
-    private Gender gender;
+    private String gender;
     private Date joinedDate;
     private Date Dob;
     private String address;
