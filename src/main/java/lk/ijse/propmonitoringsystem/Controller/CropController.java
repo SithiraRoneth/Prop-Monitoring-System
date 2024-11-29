@@ -9,6 +9,7 @@ import lk.ijse.propmonitoringsystem.Service.CropService;
 import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
+import lk.ijse.propmonitoringsystem.entity.impl.Crop;
 import lk.ijse.propmonitoringsystem.exception.CropNotFoundException;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.AppUtil;
@@ -23,18 +24,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/v1/crops")
 public class CropController {
     @Autowired
     private CropService cropService;
     private final Logger logger = LoggerFactory.getLogger(CropController.class);
-
-    @GetMapping
-    public String CropController() {
-        return "OK";
-    }
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveCrop(
@@ -93,39 +91,54 @@ public class CropController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CropDto> getAllCrops() {
-        return cropService.getAllCrops();
+//    public List<CropDto> getAllCrops() {
+//        return cropService.getAllCrops();
+//    }
+    public ResponseEntity<List<CropDto>> getAllCrops() {
+        List<CropDto> crops = cropService.getAllCrops();
+        crops.stream()
+                .map(crop -> new CropDto(
+                        crop.getCropCode(),
+                        crop.getCropName(),
+                        crop.getScientificName(),
+                        crop.getCropImage(), // Assuming Base64-encoded image is stored directly
+                        crop.getCategory(),
+                        crop.getSeason()
+                ))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(crops);
     }
 
     @PutMapping(value = "{crop_code}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void updateCrop(CropDto cropDto,
-                           @RequestPart("cropCode") String cropCode,
-                           @RequestPart("cropName") String cropName,
-                           @RequestPart("scientificName") String scientificName,
-                           @RequestPart("cropImage") MultipartFile cropImage,
-                           @RequestPart("category") String category,
-                           @RequestPart("season") String season,
-                           @RequestPart("field") List<FieldDto> field
+    public void updateCrop(
+            @RequestPart("cropCode") String cropCode,  // Ensure this is included
+            @RequestPart("cropName") String cropName,
+            @RequestPart("scientificName") String scientificName,
+            @RequestPart("cropImage") MultipartFile cropImage,  // Ensure this is included
+            @RequestPart("category") String category,
+            @RequestPart("season") String season
     ) {
-        System.out.println("cropImage" + cropImage);
+        if (cropImage == null) {
+            throw new IllegalArgumentException("cropImage is required but was not provided.");
+        }
+
         String bs64 = "";
         try {
             byte[] byteCrop = cropImage.getBytes();
             bs64 = AppUtil.generateProfilePicToBase64(byteCrop);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         var buildCrop = new CropDto();
-        //buildCrop.setCropCode(cropCode);
         buildCrop.setCropName(cropName);
         buildCrop.setScientificName(scientificName);
         buildCrop.setCropImage(bs64);
         buildCrop.setCategory(category);
         buildCrop.setSeason(season);
-        //buildCrop.setField(field);
 
-        cropService.updateCrop(cropCode, buildCrop);
+        cropService.updateCrop(cropCode, buildCrop);  // Pass the cropCode and updated crop data
     }
+
+
 }
