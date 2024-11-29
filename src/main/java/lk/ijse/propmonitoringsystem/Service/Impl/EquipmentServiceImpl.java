@@ -12,6 +12,8 @@ import lk.ijse.propmonitoringsystem.dao.EquipmentDao;
 import lk.ijse.propmonitoringsystem.dto.EquipmentStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.EquipmentDto;
 import lk.ijse.propmonitoringsystem.entity.impl.Equipment;
+import lk.ijse.propmonitoringsystem.entity.impl.Staff;
+import lk.ijse.propmonitoringsystem.exception.StaffNotFoundException;
 import lk.ijse.propmonitoringsystem.util.AppUtil;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,11 +71,11 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public void deleteEquipment(String equipmentId) {
-        Optional<Equipment> existEquip = equipmentDao.findById(equipmentId);
-        if (existEquip.isPresent()) {
-            throw new RuntimeException("Delete equipment failed");
-        }else {
-            equipmentDao.deleteById(equipmentId);
+        Optional<Equipment> existEq = equipmentDao.findById(equipmentId);
+        if (!existEq.isPresent()) {
+            throw new StaffNotFoundException("Equipment not found with ID: " + equipmentId); // Correctly throw when staff doesn't exist
+        } else {
+            equipmentDao.deleteById(equipmentId); // Delete the staff record if found
         }
     }
 }
