@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/v1/staffs")
 public class StaffController {
@@ -51,7 +52,7 @@ public class StaffController {
             buildStaff.setFirstName(staffDto.getFirstName());
             buildStaff.setLastName(staffDto.getLastName());
             buildStaff.setDesignation(staffDto.getDesignation());
-            buildStaff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
+            buildStaff.setGender(String.valueOf(Gender.valueOf(String.valueOf(staffDto.getGender()))));
             buildStaff.setJoinedDate(staffDto.getJoinedDate());
             buildStaff.setDob(staffDto.getDob());
             buildStaff.setAddress(staffDto.getAddress());
@@ -98,14 +99,15 @@ public class StaffController {
     public ResponseEntity<Void> deleteStaff(@PathVariable("staffId") String staffId) {
         try {
             staffService.deleteStaff(staffId);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Successful deletion
         } catch (StaffNotFoundException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Staff not found
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // General error
         }
     }
+
 
     @PutMapping(value = "{staffId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateStaff(@PathVariable("staffId") String staffId, StaffDto staffDto) {
@@ -115,7 +117,7 @@ public class StaffController {
             buildStaff.setFirstName(staffDto.getFirstName());
             buildStaff.setLastName(staffDto.getLastName());
             buildStaff.setDesignation(staffDto.getDesignation());
-            buildStaff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
+            buildStaff.setGender(String.valueOf(Gender.valueOf(String.valueOf(staffDto.getGender()))));
             buildStaff.setJoinedDate(staffDto.getJoinedDate());
             buildStaff.setDob(staffDto.getDob());
             buildStaff.setAddress(staffDto.getAddress());
