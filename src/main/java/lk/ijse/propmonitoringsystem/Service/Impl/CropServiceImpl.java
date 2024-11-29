@@ -58,27 +58,30 @@ public class CropServiceImpl implements CropService {
     @Override
     public void deleteCrop(String cropCode) {
         Optional<Crop> existCrop = cropDao.findById(cropCode);
-        if (existCrop.isPresent()){
+        if (existCrop.isEmpty()) { // Check if crop is NOT found
             throw new CropNotFoundException("Crop with code " + cropCode + " not found");
-        }else {
-            cropDao.deleteById(cropCode);
+        } else {
+            cropDao.deleteById(cropCode); // Delete crop if found
         }
     }
+
 
     @Override
     public void updateCrop(String cropCode, CropDto cropDto) {
         Optional<Crop> tempCrop = cropDao.findById(cropCode);
-        if (tempCrop.isPresent()){
-            //tempCrop.get().setCropCode(cropDto.getCropCode());
+        if (tempCrop.isPresent()) {
+            // Update the crop fields from DTO
             tempCrop.get().setCropName(cropDto.getCropName());
             tempCrop.get().setScientificName(cropDto.getScientificName());
-            tempCrop.get().setCropImage(tempCrop.get().getCropImage());
+            tempCrop.get().setCropImage(cropDto.getCropImage());  // Use the new crop image
+
+            tempCrop.get().setCategory(cropDto.getCategory());
             tempCrop.get().setSeason(cropDto.getSeason());
 
-//            Field field = mapping.toFieldEntity((FieldDto) cropDto.getField());
-//            tempCrop.get().setField(field);
+            cropDao.save(tempCrop.get());  // Don't forget to save the updated crop entity
         }
     }
+
 
 //    @Override
 //    public String generateCropCode() {
