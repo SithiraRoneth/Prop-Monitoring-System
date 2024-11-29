@@ -13,6 +13,7 @@ import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
 import lk.ijse.propmonitoringsystem.entity.Gender;
 import lk.ijse.propmonitoringsystem.entity.Role;
 import lk.ijse.propmonitoringsystem.entity.impl.Staff;
+import lk.ijse.propmonitoringsystem.exception.StaffNotFoundException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,10 +61,10 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public void deleteStaff(String staffId) {
         Optional<Staff> existStaff = staffDao.findById(staffId);
-        if (existStaff.isPresent()) {
-            throw new RuntimeException("Failed to delete staff");
+        if (!existStaff.isPresent()) {
+            throw new StaffNotFoundException("Staff not found with ID: " + staffId); // Correctly throw when staff doesn't exist
         } else {
-            staffDao.deleteById(staffId);
+            staffDao.deleteById(staffId); // Delete the staff record if found
         }
     }
 
