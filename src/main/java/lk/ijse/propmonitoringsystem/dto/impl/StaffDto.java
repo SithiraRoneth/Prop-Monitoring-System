@@ -19,15 +19,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StaffDto implements StaffStatus {
-    private String staffId;
+    private String email;
     private String firstName;
     private String lastName;
     private String designation;
     private String gender;
     private Date joinedDate;
-    private Date Dob;
+    //private Date Dob;
     private String address;
     private String contactNo;
-    private String email;
     private Role role;
 }

@@ -5,6 +5,7 @@
  * */
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import lk.ijse.propmonitoringsystem.Service.StaffService;
 import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.StaffDao;
@@ -30,6 +31,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void saveStaff(StaffDto staffDto) {
+        System.out.println("ane :"+mapping.toStaffEntity(staffDto));
         Staff savedStaff = staffDao.save(mapping.toStaffEntity(staffDto));
         if (savedStaff == null) {
             throw new RuntimeException("Failed to save staff");
@@ -37,44 +39,54 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public void updateStaff(String staffId, StaffDto staffDto) {
-        Optional<Staff> tempStaff = staffDao.findById(staffId);
+    public void updateStaff(String email, StaffDto staffDto) {
+        if (staffDto == null) {
+            throw new IllegalArgumentException("StaffDto cannot be null");
+        }
+
+        Optional<Staff> tempStaff = staffDao.findById(email);
         if (tempStaff.isPresent()) {
             Staff staff = tempStaff.get();
             staff.setFirstName(staffDto.getFirstName());
             staff.setLastName(staffDto.getLastName());
             staff.setDesignation(staffDto.getDesignation());
-            staff.setGender(Gender.valueOf(String.valueOf(staffDto.getGender())));
+
+            try {
+                staff.setGender(Gender.valueOf(staffDto.getGender()));  // Ensure correct enum mapping
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid gender value: " + staffDto.getGender(), e);
+            }
+
             staff.setJoinedDate(staffDto.getJoinedDate());
-            staff.setDob(staffDto.getDob());
             staff.setAddress(staffDto.getAddress());
-//            staff.setAddressLine2(staffDto.getAddressLine2());
-//            staff.setAddressLine3(staffDto.getAddressLine3());
-//            staff.setAddressLine4(staffDto.getAddressLine4());
-//            staff.setAddressLine5(staffDto.getAddressLine5());
             staff.setContactNo(staffDto.getContactNo());
-            staff.setEmail(staffDto.getEmail());
-            staff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
-        }
-    }
 
-    @Override
-    public void deleteStaff(String staffId) {
-        Optional<Staff> existStaff = staffDao.findById(staffId);
-        if (!existStaff.isPresent()) {
-            throw new StaffNotFoundException("Staff not found with ID: " + staffId); // Correctly throw when staff doesn't exist
+            // Save the updated staff object
+            staffDao.save(staff);  // Persist the changes in the database
         } else {
-            staffDao.deleteById(staffId); // Delete the staff record if found
+            throw new EntityNotFoundException("Staff with email " + email + " not found.");
+        }
+    }
+
+
+
+    @Override
+    public void deleteStaff(String email) {
+        Optional<Staff> existStaff = staffDao.findById(email);
+        if (!existStaff.isPresent()) {
+            throw new StaffNotFoundException("Staff not found with ID: " + email); // Correctly throw when staff doesn't exist
+        } else {
+            staffDao.deleteById(email); // Delete the staff record if found
         }
     }
 
     @Override
-    public StaffStatus getSelectedStaff(String staffId) {
-        if (staffDao.existsById(staffId)) {
-            Staff staff = staffDao.getReferenceById(staffId);
+    public StaffStatus getSelectedStaff(String email) {
+        if (staffDao.existsById(email)) {
+            Staff staff = staffDao.getReferenceById(email);
             return mapping.toStaffDto(staff);
         } else {
-            return new SelectedErrorStatus(2, "Staff with code " + staffId + " not found");
+            return new SelectedErrorStatus(2, "Staff with code " + email + " not found");
         }
     }
 

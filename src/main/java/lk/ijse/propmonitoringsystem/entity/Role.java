@@ -1,5 +1,5 @@
 package lk.ijse.propmonitoringsystem.entity;
 
 public enum Role {
-    ADMINISTRATOR,MANAGER,SCIENTIST
+    ADMINISTRATOR,MANAGER,SCIENTIST,OTHER
 }

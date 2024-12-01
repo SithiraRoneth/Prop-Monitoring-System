@@ -12,6 +12,7 @@ import lk.ijse.propmonitoringsystem.entity.Gender;
 import lk.ijse.propmonitoringsystem.entity.Role;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.exception.StaffNotFoundException;
+import lk.ijse.propmonitoringsystem.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,46 +35,21 @@ public class StaffController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveStaff(@RequestBody StaffDto staffDto) {
-//            @RequestPart("staff_id") String staffId,
-//            @RequestPart("first_name") String firstName,
-//            @RequestPart("last_name") String lastName,
-//            @RequestPart("designation") String designation,
-//            @RequestPart("gender") String gender,
-//            @RequestPart("joined_date") Date joinedDate,
-//            @RequestPart("dob") Date dob,
-//            @RequestPart("address") String address,
-//            @RequestPart("contact_no") String contactNo,
-//            @RequestPart("email") String email,
-//            @RequestPart("role") String role
-//            ) {
+
         try {
             var buildStaff = new StaffDto();
-            buildStaff.setStaffId(staffDto.getStaffId());
+            buildStaff.setEmail(staffDto.getEmail());
             buildStaff.setFirstName(staffDto.getFirstName());
             buildStaff.setLastName(staffDto.getLastName());
             buildStaff.setDesignation(staffDto.getDesignation());
             buildStaff.setGender(String.valueOf(Gender.valueOf(String.valueOf(staffDto.getGender()))));
             buildStaff.setJoinedDate(staffDto.getJoinedDate());
-            buildStaff.setDob(staffDto.getDob());
+            //buildStaff.setDob(staffDto.getDob());
             buildStaff.setAddress(staffDto.getAddress());
             buildStaff.setContactNo(staffDto.getContactNo());
-            buildStaff.setEmail(staffDto.getEmail());
-            buildStaff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
-//            System.out.println(buildStaff);
-//            System.out.println(role);
-//            buildStaff.setStaffId(staffId);
-//            buildStaff.setFirstName(firstName);
-//            buildStaff.setLastName(lastName);
-//            buildStaff.setDesignation(designation);
-//            buildStaff.setGender(Gender.valueOf(gender));
-//            buildStaff.setJoinedDate(joinedDate);
-//            buildStaff.setDob(dob);
-//            buildStaff.setAddress(address);
-//            buildStaff.setContactNo(contactNo);
-//            buildStaff.setEmail(email);
-//            buildStaff.setRole(Role.valueOf(role));
-            staffService.saveStaff(buildStaff);
+            buildStaff.setRole(staffDto.getRole());
             System.out.println(buildStaff);
+            staffService.saveStaff(buildStaff);
 //            logger.info("staff saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
 
@@ -84,9 +60,9 @@ public class StaffController {
         }
     }
 
-    @GetMapping(value = "{staffId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public StaffStatus getSelectedStaff(@PathVariable("staffId") String staffId) {
-        return staffService.getSelectedStaff(staffId);
+    @GetMapping(value = "{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public StaffStatus getSelectedStaff(@PathVariable("email") String email) {
+        return staffService.getSelectedStaff(email);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -95,10 +71,10 @@ public class StaffController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping(value = "{staffId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> deleteStaff(@PathVariable("staffId") String staffId) {
+    @DeleteMapping(value = "{email}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteStaff(@PathVariable("email") String email) {
         try {
-            staffService.deleteStaff(staffId);
+            staffService.deleteStaff(email);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Successful deletion
         } catch (StaffNotFoundException e) {
             e.printStackTrace();
@@ -109,27 +85,16 @@ public class StaffController {
     }
 
 
-    @PutMapping(value = "{staffId}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> updateStaff(@PathVariable("staffId") String staffId, StaffDto staffDto) {
+    @PutMapping(value = "/{email}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateStaff(@PathVariable("email") String email, @RequestBody StaffDto staffDto) {
         try {
-            var buildStaff = new StaffDto();
-            buildStaff.setStaffId(staffDto.getStaffId());
-            buildStaff.setFirstName(staffDto.getFirstName());
-            buildStaff.setLastName(staffDto.getLastName());
-            buildStaff.setDesignation(staffDto.getDesignation());
-            buildStaff.setGender(String.valueOf(Gender.valueOf(String.valueOf(staffDto.getGender()))));
-            buildStaff.setJoinedDate(staffDto.getJoinedDate());
-            buildStaff.setDob(staffDto.getDob());
-            buildStaff.setAddress(staffDto.getAddress());
-            buildStaff.setContactNo(staffDto.getContactNo());
-            buildStaff.setEmail(staffDto.getEmail());
-            buildStaff.setRole(Role.valueOf(String.valueOf(staffDto.getRole())));
-
-            staffService.updateStaff(staffId, buildStaff);
+            staffService.updateStaff(email, staffDto);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 }
