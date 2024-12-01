@@ -21,6 +21,6 @@ public class UserStaffDetails implements SuperEntity {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "staffId",nullable = false)
+    @JoinColumn(name = "staff_email",nullable = false)
     private Staff staff;
 }
