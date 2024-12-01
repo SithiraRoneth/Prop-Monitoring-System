@@ -59,15 +59,23 @@ public class FieldServiceImpl implements FieldService {
             field.setFieldName(fieldDto.getFieldName());
             field.setFieldLocation(fieldDto.getFieldLocation());
             field.setExtendSizeOfTheField(fieldDto.getExtendSizeOfTheField());
-            field.setFieldImage1(fieldDto.getFieldImage1());
-            field.setFieldImage2(fieldDto.getFieldImage2());
+            if (fieldDto.getFieldImage1() != null && !fieldDto.getFieldImage1().isEmpty()) {
+                field.setFieldImage1(fieldDto.getFieldImage1());
+            }
+            if (fieldDto.getFieldImage2() != null && !fieldDto.getFieldImage2().isEmpty()) {
+                field.setFieldImage2(fieldDto.getFieldImage2());
+            }
+            fieldDao.save(field); // Save changes
+        } else {
+            throw new RuntimeException("Field not found");
         }
     }
+
 
     @Override
     public void deleteField(String fieldCode) {
         Optional<Field> existField = fieldDao.findById(fieldCode);
-        if (existField.isPresent()) {
+        if (existField.isEmpty()) {
             throw new RuntimeException("Delete field failed");
         }else {
             fieldDao.deleteById(fieldCode);

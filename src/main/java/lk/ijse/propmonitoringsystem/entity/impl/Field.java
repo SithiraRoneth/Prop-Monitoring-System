@@ -18,8 +18,8 @@ public class Field implements SuperEntity {
     @Id
     private String fieldCode;
     private String fieldName;
-    private Point fieldLocation;
-    private Double extendSizeOfTheField;
+    private String fieldLocation;
+    private String extendSizeOfTheField;
 
     @OneToMany(mappedBy = "field")
     private List<CropFieldDetails> field_Code;

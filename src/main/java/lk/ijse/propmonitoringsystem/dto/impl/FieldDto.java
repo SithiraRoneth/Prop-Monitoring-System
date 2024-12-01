@@ -10,8 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.awt.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,8 +17,8 @@ import java.util.List;
 public class FieldDto implements FieldStatus {
     private String fieldCode;
     private String fieldName;
-    private Point fieldLocation;
-    private Double extendSizeOfTheField;
+    private String fieldLocation;
+    private String extendSizeOfTheField;
     private String fieldImage1;
     private String fieldImage2;
 }
