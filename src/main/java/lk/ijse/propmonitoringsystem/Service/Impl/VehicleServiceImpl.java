@@ -63,12 +63,12 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void deleteVehicle(String vehicleCode) {
-        Optional<Vehicle> existVehicle = vehicleDao.findById(vehicleCode);
-        if (existVehicle.isPresent()){
+    public void deleteVehicle(String licensePlateNo) {
+        Optional<Vehicle> existVehicle = vehicleDao.findById(licensePlateNo);
+        if (!existVehicle.isPresent()){
             throw new RuntimeException("Delete Vehicle Failed");
         }else {
-            vehicleDao.deleteById(vehicleCode);
+            vehicleDao.deleteById(licensePlateNo);
         }
     }
 

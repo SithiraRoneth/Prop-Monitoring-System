@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VehicleDto implements VehicleStatus {
-    private String vehicleCode;
     private String licensePlateNo;
     private String vehicleCategory;
     private String fuelType;
