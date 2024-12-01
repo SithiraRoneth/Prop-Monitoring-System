@@ -6,20 +6,10 @@
 package lk.ijse.propmonitoringsystem.util;
 
 import java.util.Base64;
+import java.util.UUID;
 
 public class AppUtil {
     public static String generateProfilePicToBase64(byte[] profilePic) {
         return Base64.getEncoder().encodeToString(profilePic);
-    }
-    public String generateCropCode(){
-        return null;
-    }
-
-    public String generateUserStaffId(){
-        return null;
-    }
-
-    public static String generateEqId(){
-        return "Eq001";
     }
 }
