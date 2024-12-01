@@ -54,6 +54,7 @@ public class EquipmentController {
     public EquipmentStatus getSelectedEquip(@PathVariable("equipmentId") String equipmentId) {
         return equipmentService.getSelectedEquipment(equipmentId);
     }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EquipmentDto> getAllEquipments() {
         List<EquipmentDto> equipments = equipmentService.getAllEquipment();
@@ -61,25 +62,41 @@ public class EquipmentController {
         return equipments;
     }
 
-    @PutMapping(value = "{equipmentId}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateEquipment(EquipmentDto equipmentDto,
-                                @RequestPart("equipmentId") String equipmentId,
-                                @RequestPart("equipmentName") String equipmentName,
-                                @RequestPart("equipmentType") String equipmentType,
-                                @RequestPart("status") String status
-
-    ){
+    //    @PutMapping(value = "{equipmentId}" ,consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public void updateEquipment(EquipmentDto equipmentDto,
+//                                @RequestPart("equipmentId") String equipmentId,
+//                                @RequestPart("equipmentName") String equipmentName,
+//                                @RequestPart("equipmentType") String equipmentType,
+//                                @RequestPart("status") String status
+//
+//    ){
+//        try {
+//            var UpdateEquip = new EquipmentDto();
+//            UpdateEquip.setEquipmentId(equipmentId);
+//            UpdateEquip.setEquipmentName(equipmentName);
+//            UpdateEquip.setEquipmentType(Type.valueOf(equipmentType));
+//            UpdateEquip.setStatus(Status.valueOf(status));
+//            equipmentService.updateEquipment(equipmentId,UpdateEquip);
+//        }catch (Exception e){
+//            throw new RuntimeException("Equipment didn't updated");
+//        }
+//    }
+    @PutMapping(value = "{equipmentId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateEquipment(@PathVariable("equipmentId") String equipmentId,
+                                @RequestBody EquipmentDto equipmentDto) {
         try {
-            var UpdateEquip = new EquipmentDto();
-            UpdateEquip.setEquipmentId(equipmentId);
-            UpdateEquip.setEquipmentName(equipmentName);
-            UpdateEquip.setEquipmentType(Type.valueOf(equipmentType));
-            UpdateEquip.setStatus(Status.valueOf(status));
-            equipmentService.updateEquipment(equipmentId,UpdateEquip);
-        }catch (Exception e){
-            throw new RuntimeException("Equipment didn't updated");
+            // Validate the ID consistency
+            if (!equipmentId.equals(equipmentDto.getEquipmentId())) {
+                throw new IllegalArgumentException("Equipment ID in the path does not match the ID in the body");
+            }
+            // Update the equipment
+            equipmentService.updateEquipment(equipmentId, equipmentDto);
+        } catch (Exception e) {
+            throw new RuntimeException("Equipment didn't update: " + e.getMessage(), e);
         }
     }
+
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(value = "{equipmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteStaff(@PathVariable("equipmentId") String equipmentId) {
