@@ -94,6 +94,7 @@ public class CropController {
 //    public List<CropDto> getAllCrops() {
 //        return cropService.getAllCrops();
 //    }
+
     public ResponseEntity<List<CropDto>> getAllCrops() {
         List<CropDto> crops = cropService.getAllCrops();
         crops.stream()
