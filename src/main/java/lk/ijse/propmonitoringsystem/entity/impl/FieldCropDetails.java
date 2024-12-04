@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cropFieldDetails")
-public class CropFieldDetails {
+public class FieldCropDetails {
     @Id
     private String cropFieldId;
 

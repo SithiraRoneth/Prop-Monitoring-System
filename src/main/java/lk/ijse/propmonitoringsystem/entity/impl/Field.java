@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.awt.*;
 import java.util.List;
 
 @Data
@@ -22,7 +21,7 @@ public class Field implements SuperEntity {
     private String extendSizeOfTheField;
 
     @OneToMany(mappedBy = "field")
-    private List<CropFieldDetails> field_Code;
+    private List<FieldCropDetails> field_Code;
 
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage1;

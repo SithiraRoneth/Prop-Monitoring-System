@@ -224,29 +224,42 @@ public class Mapping {
     }
 
     // Field Equipment Details
-    public EquipmentManage toFieldEquipmentDetailsEntity(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
+    public EquipmentManage toFieldEquipmentDetailsEntity(FieldCropDetailsDto fieldEquipmentDetailsDto) {
         return modelMapper.map(fieldEquipmentDetailsDto, EquipmentManage.class);
     }
 
-    public FieldEquipmentDetailsDto toFieldEquipmentDetailsDto(EquipmentManage fieldEquipmentDetails) {
-        return modelMapper.map(fieldEquipmentDetails, FieldEquipmentDetailsDto.class);
+    public FieldCropDetailsDto toFieldEquipmentDetailsDto(EquipmentManage fieldEquipmentDetails) {
+        return modelMapper.map(fieldEquipmentDetails, FieldCropDetailsDto.class);
     }
 
-    public List<FieldEquipmentDetailsDto> toFieldEquipmentDetailsDtoList(List<EquipmentManage> fieldEquipmentDetailsList) {
-        return modelMapper.map(fieldEquipmentDetailsList, new TypeToken<List<FieldEquipmentDetailsDto>>() {}.getType());
+    public List<FieldCropDetailsDto> toFieldEquipmentDetailsDtoList(List<EquipmentManage> fieldEquipmentDetailsList) {
+        return modelMapper.map(fieldEquipmentDetailsList, new TypeToken<List<FieldCropDetailsDto>>() {}.getType());
     }
 
     // Staff Field Details
-    public DutyManage toStaffFieldDetailsEntity(StaffFieldDetailsDto staffFieldDetailsDto) {
-        return modelMapper.map(staffFieldDetailsDto, DutyManage.class);
+    public EquipmentManage toEquipmentManageEntity(EquipmentManageDto equipmentManageDto) {
+        return modelMapper.map(equipmentManageDto, EquipmentManage.class);
     }
 
-    public StaffFieldDetailsDto toStaffFieldDetailsDto(DutyManage staffFieldDetails) {
-        return modelMapper.map(staffFieldDetails, StaffFieldDetailsDto.class);
+    public EquipmentManageDto toEquipmentManageDto(EquipmentManage equipmentManage) {
+        return modelMapper.map(equipmentManage, EquipmentManageDto.class);
     }
 
-    public List<StaffFieldDetailsDto> toStaffFieldDetailsDtoList(List<DutyManage> staffFieldDetailsList) {
-        return modelMapper.map(staffFieldDetailsList, new TypeToken<List<StaffFieldDetailsDto>>() {}.getType());
+    public List<EquipmentManageDto> toEquipmentManageDtoList(List<EquipmentManage> equipmentManageList) {
+        return modelMapper.map(equipmentManageList, new TypeToken<List<EquipmentManageDto>>() {}.getType());
+    }
+
+    //Duty Manage
+    public DutyManage toDutyManageEntity(DutyManageDto dutyManageDto) {
+        return modelMapper.map(dutyManageDto, DutyManage.class);
+    }
+
+    public DutyManageDto toDutyManageDto(DutyManage dutyManage) {
+        return modelMapper.map(dutyManage, DutyManageDto.class);
+    }
+
+    public List<DutyManageDto> toDutyManageDtoList(List<DutyManage> dutyManageList) {
+        return modelMapper.map(dutyManageList, new TypeToken<List<DutyManageDto>>() {}.getType());
     }
 
     // User Staff Details

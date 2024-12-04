@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FieldEquipmentDetailsDto {
+public class FieldCropDetailsDto {
     private String fieldDetailsId;
     private String field;
-    private String equipment;
+    private String crop;
 }

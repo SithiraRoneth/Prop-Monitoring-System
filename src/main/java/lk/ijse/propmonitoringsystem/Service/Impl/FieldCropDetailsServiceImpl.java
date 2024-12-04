@@ -6,9 +6,9 @@
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
 import jakarta.transaction.Transactional;
-import lk.ijse.propmonitoringsystem.Service.FieldEquipmentDetailsService;
-import lk.ijse.propmonitoringsystem.dao.FieldEquipmentDetailsDao;
-import lk.ijse.propmonitoringsystem.dto.impl.FieldEquipmentDetailsDto;
+import lk.ijse.propmonitoringsystem.Service.FieldCropDetailsService;
+import lk.ijse.propmonitoringsystem.dao.EquipmentManageDao;
+import lk.ijse.propmonitoringsystem.dto.impl.FieldCropDetailsDto;
 import lk.ijse.propmonitoringsystem.entity.impl.EquipmentManage;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
@@ -19,13 +19,13 @@ import java.util.List;
 
 @Service
 @Transactional
-public class FieldEquipmentDetailsServiceImpl implements FieldEquipmentDetailsService {
+public class FieldCropDetailsServiceImpl implements FieldCropDetailsService {
     @Autowired
     private Mapping mapping;
     @Autowired
-    private FieldEquipmentDetailsDao fieldEquipmentDetailsDao;
+    private EquipmentManageDao fieldEquipmentDetailsDao;
     @Override
-    public void saveFieldEquipmentDetails(FieldEquipmentDetailsDto fieldEquipmentDetailsDto) {
+    public void saveFieldEquipmentDetails(FieldCropDetailsDto fieldEquipmentDetailsDto) {
         EquipmentManage saveFieldEquipmentDetails = fieldEquipmentDetailsDao.save(mapping.toFieldEquipmentDetailsEntity(fieldEquipmentDetailsDto));
         if (saveFieldEquipmentDetails == null) {
             throw new DataPersistException("Field equipment details not saved");
@@ -33,7 +33,7 @@ public class FieldEquipmentDetailsServiceImpl implements FieldEquipmentDetailsSe
     }
 
     @Override
-    public List<FieldEquipmentDetailsDto> getAllFieldEquipmentDetails() {
+    public List<FieldCropDetailsDto> getAllFieldEquipmentDetails() {
         List<EquipmentManage> all = fieldEquipmentDetailsDao.findAll();
         return mapping.toFieldEquipmentDetailsDtoList(all);
     }

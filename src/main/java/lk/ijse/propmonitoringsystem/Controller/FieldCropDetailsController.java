@@ -5,8 +5,8 @@
  * */
 package lk.ijse.propmonitoringsystem.Controller;
 
-import lk.ijse.propmonitoringsystem.Service.FieldEquipmentDetailsService;
-import lk.ijse.propmonitoringsystem.dto.impl.FieldEquipmentDetailsDto;
+import lk.ijse.propmonitoringsystem.Service.FieldCropDetailsService;
+import lk.ijse.propmonitoringsystem.dto.impl.FieldCropDetailsDto;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,21 +18,21 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/fieldEquip")
-public class FieldEquipmentDetailsController {
+public class FieldCropDetailsController {
     @Autowired
-    private FieldEquipmentDetailsService fieldEquipmentDetailsService;
+    private FieldCropDetailsService fieldEquipmentDetailsService;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveFieldEquipmentDetails(
             @RequestPart("fieldEquipmentId") String fieldEquipId,
             @RequestPart("FieldId") String fieldId,
-            @RequestPart("EquipmentId") String equipmentId
+            @RequestPart("CropId") String cropId
     ) {
         try {
-            FieldEquipmentDetailsDto buildFieldEquip = new FieldEquipmentDetailsDto();
+            FieldCropDetailsDto buildFieldEquip = new FieldCropDetailsDto();
             buildFieldEquip.setFieldDetailsId(fieldEquipId);
             buildFieldEquip.setField(fieldId);
-            buildFieldEquip.setEquipment(equipmentId);
+            buildFieldEquip.setCrop(cropId);
             fieldEquipmentDetailsService.saveFieldEquipmentDetails(buildFieldEquip);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
@@ -43,7 +43,7 @@ public class FieldEquipmentDetailsController {
 
     }
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<FieldEquipmentDetailsDto> getAllFieldEquipmentDetails() {
+    public List<FieldCropDetailsDto> getAllFieldEquipmentDetails() {
         return fieldEquipmentDetailsService.getAllFieldEquipmentDetails();
     }
 }
