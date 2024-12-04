@@ -1,6 +1,7 @@
 package lk.ijse.propmonitoringsystem.Controller;
 
 import lk.ijse.propmonitoringsystem.Service.UserStaffDetailsService;
+import lk.ijse.propmonitoringsystem.dto.impl.DutyManageDto;
 import lk.ijse.propmonitoringsystem.dto.impl.UserStaffDetailsDto;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.AppUtil;
@@ -8,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("UserStaff/")
@@ -46,5 +46,10 @@ public class UserStaffDetailsController {
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<UserStaffDetailsDto> getAllUserStaffDetails() {
+        return userStaffDetailsService.getAllUserStaffDetails();
     }
 }
