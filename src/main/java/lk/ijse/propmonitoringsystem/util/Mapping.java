@@ -149,11 +149,9 @@ public class Mapping {
     public Crop toCropEntity(CropDto cropDto) {
         return modelMapper.map(cropDto, Crop.class);
     }
-
     public CropDto toCropDto(Crop crop) {
         return modelMapper.map(crop, CropDto.class);
     }
-
     public List<CropDto> toCropDtoList(List<Crop> cropList) {
         return modelMapper.map(cropList, new TypeToken<List<CropDto>>() {}.getType());
     }
@@ -162,11 +160,9 @@ public class Mapping {
     public Field toFieldEntity(FieldDto fieldDto) {
         return modelMapper.map(fieldDto, Field.class);
     }
-
     public FieldDto toFieldDto(Field field) {
         return modelMapper.map(field, FieldDto.class);
     }
-
     public List<FieldDto> toFieldDtoList(List<Field> fieldList) {
         return modelMapper.map(fieldList, new TypeToken<List<FieldDto>>() {}.getType());
     }
@@ -175,11 +171,9 @@ public class Mapping {
     public Vehicle toVehicleEntity(VehicleDto vehicleDto) {
         return modelMapper.map(vehicleDto, Vehicle.class);
     }
-
     public VehicleDto toVehicleDto(Vehicle vehicle) {
         return modelMapper.map(vehicle, VehicleDto.class);
     }
-
     public List<VehicleDto> toVehicleDtoList(List<Vehicle> vehicleList) {
         return modelMapper.map(vehicleList, new TypeToken<List<VehicleDto>>() {}.getType());
     }
@@ -188,11 +182,9 @@ public class Mapping {
     public Equipment toEquipmentEntity(EquipmentDto equipmentDto) {
         return modelMapper.map(equipmentDto, Equipment.class);
     }
-
     public EquipmentDto toEquipmentDto(Equipment equipment) {
         return modelMapper.map(equipment, EquipmentDto.class);
     }
-
     public List<EquipmentDto> toEquipmentDtoList(List<Equipment> equipmentList) {
         return modelMapper.map(equipmentList, new TypeToken<List<EquipmentDto>>() {}.getType());
     }
@@ -201,11 +193,9 @@ public class Mapping {
     public Staff toStaffEntity(StaffDto staffDto) {
         return modelMapper.map(staffDto, Staff.class);
     }
-
     public StaffDto toStaffDto(Staff staff) {
         return modelMapper.map(staff, StaffDto.class);
     }
-
     public List<StaffDto> toStaffDtoList(List<Staff> staffList) {
         return modelMapper.map(staffList, new TypeToken<List<StaffDto>>() {}.getType());
     }
@@ -214,11 +204,9 @@ public class Mapping {
     public MonitoringLog toMonitorEntity(MonitoringLogDto monitoringLogDto) {
         return modelMapper.map(monitoringLogDto, MonitoringLog.class);
     }
-
     public MonitoringLogDto toMonitorDto(MonitoringLog monitoringLog) {
         return modelMapper.map(monitoringLog, MonitoringLogDto.class);
     }
-
     public List<MonitoringLogDto> toMonitorDtoList(List<MonitoringLog> monitoringLogs) {
         return modelMapper.map(monitoringLogs, new TypeToken<List<MonitoringLogDto>>() {}.getType());
     }
@@ -227,11 +215,9 @@ public class Mapping {
     public EquipmentManage toFieldEquipmentDetailsEntity(FieldCropDetailsDto fieldEquipmentDetailsDto) {
         return modelMapper.map(fieldEquipmentDetailsDto, EquipmentManage.class);
     }
-
     public FieldCropDetailsDto toFieldEquipmentDetailsDto(EquipmentManage fieldEquipmentDetails) {
         return modelMapper.map(fieldEquipmentDetails, FieldCropDetailsDto.class);
     }
-
     public List<FieldCropDetailsDto> toFieldEquipmentDetailsDtoList(List<EquipmentManage> fieldEquipmentDetailsList) {
         return modelMapper.map(fieldEquipmentDetailsList, new TypeToken<List<FieldCropDetailsDto>>() {}.getType());
     }
@@ -240,11 +226,9 @@ public class Mapping {
     public EquipmentManage toEquipmentManageEntity(EquipmentManageDto equipmentManageDto) {
         return modelMapper.map(equipmentManageDto, EquipmentManage.class);
     }
-
     public EquipmentManageDto toEquipmentManageDto(EquipmentManage equipmentManage) {
         return modelMapper.map(equipmentManage, EquipmentManageDto.class);
     }
-
     public List<EquipmentManageDto> toEquipmentManageDtoList(List<EquipmentManage> equipmentManageList) {
         return modelMapper.map(equipmentManageList, new TypeToken<List<EquipmentManageDto>>() {}.getType());
     }
@@ -253,11 +237,9 @@ public class Mapping {
     public DutyManage toDutyManageEntity(DutyManageDto dutyManageDto) {
         return modelMapper.map(dutyManageDto, DutyManage.class);
     }
-
     public DutyManageDto toDutyManageDto(DutyManage dutyManage) {
         return modelMapper.map(dutyManage, DutyManageDto.class);
     }
-
     public List<DutyManageDto> toDutyManageDtoList(List<DutyManage> dutyManageList) {
         return modelMapper.map(dutyManageList, new TypeToken<List<DutyManageDto>>() {}.getType());
     }
@@ -266,11 +248,9 @@ public class Mapping {
     public UserStaffDetails toUserStaffDetailsEntity(UserStaffDetailsDto userStaffDetailsDto) {
         return modelMapper.map(userStaffDetailsDto, UserStaffDetails.class);
     }
-
     public UserStaffDetailsDto toUserStaffDetailsDto(UserStaffDetails userStaffDetails) {
         return modelMapper.map(userStaffDetails, UserStaffDetailsDto.class);
     }
-
     public List<UserStaffDetailsDto> toUserStaffDetailsDtoList(List<UserStaffDetails> userStaffDetailsList) {
         return modelMapper.map(userStaffDetailsList, new TypeToken<List<UserStaffDetailsDto>>() {}.getType());
     }
