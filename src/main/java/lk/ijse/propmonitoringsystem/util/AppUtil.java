@@ -12,4 +12,10 @@ public class AppUtil {
     public static String generateProfilePicToBase64(byte[] profilePic) {
         return Base64.getEncoder().encodeToString(profilePic);
     }
+    public static String generateFieldDetailsId(){
+        return UUID.randomUUID().toString();
+    }
+    public static String generateMonitoringId(){
+        return "Log-"+UUID.randomUUID().toString();
+    }
 }

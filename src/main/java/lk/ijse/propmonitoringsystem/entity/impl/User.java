@@ -21,7 +21,6 @@ import java.util.List;
 @Table(name = "user")
 public class User implements SuperEntity {
     @Id
-    private String userName;
     private String email;
     private String password;
 
@@ -39,4 +38,8 @@ public class User implements SuperEntity {
 ////
 ////    @OneToMany(mappedBy = "user")
 ////    private List<UserFieldDetails> username;
+
+    public User(String email){
+        this.email = email;
+    }
 }

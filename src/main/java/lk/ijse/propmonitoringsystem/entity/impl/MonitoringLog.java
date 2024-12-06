@@ -18,8 +18,6 @@ public class MonitoringLog implements SuperEntity {
     @Id
     private String logCode;
     private Date date;
-    private String logDetails;
-    private String observedImage;
 
 //    @OneToMany(mappedBy = "monitoringLog")
 //    private List<UserMonitoringLogDetails> lod_code;

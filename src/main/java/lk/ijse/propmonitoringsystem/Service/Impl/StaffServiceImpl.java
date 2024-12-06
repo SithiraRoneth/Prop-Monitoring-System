@@ -6,13 +6,11 @@
 package lk.ijse.propmonitoringsystem.Service.Impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lk.ijse.propmonitoringsystem.Service.StaffService;
-import lk.ijse.propmonitoringsystem.customStatusCode.SelectedErrorStatus;
 import lk.ijse.propmonitoringsystem.dao.StaffDao;
-import lk.ijse.propmonitoringsystem.dto.StaffStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.StaffDto;
 import lk.ijse.propmonitoringsystem.entity.Gender;
-import lk.ijse.propmonitoringsystem.entity.Role;
 import lk.ijse.propmonitoringsystem.entity.impl.Staff;
 import lk.ijse.propmonitoringsystem.exception.StaffNotFoundException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
@@ -23,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class StaffServiceImpl implements StaffService {
     @Autowired
     private StaffDao staffDao;
@@ -81,13 +80,20 @@ public class StaffServiceImpl implements StaffService {
     }
 
     @Override
-    public StaffStatus getSelectedStaff(String email) {
+    public String getSelectedStaff(String email) {
+//        if (staffDao.existsById(email)) {
+//            Staff staff = staffDao.getReferenceById(email);
+//            return mapping.toStaffDto(staff);
+//        } else {
+//            return new SelectedErrorStatus(2, "Staff with code " + email + " not found");
+//        }
         if (staffDao.existsById(email)) {
-            Staff staff = staffDao.getReferenceById(email);
-            return mapping.toStaffDto(staff);
-        } else {
-            return new SelectedErrorStatus(2, "Staff with code " + email + " not found");
+            Staff staff = staffDao.findById(email).orElse(null);
+            if (staff != null && staff.getRole() != null) {
+                return staff.getRole().name(); // Convert enum to String
+            }
         }
+        return null;
     }
 
     @Override

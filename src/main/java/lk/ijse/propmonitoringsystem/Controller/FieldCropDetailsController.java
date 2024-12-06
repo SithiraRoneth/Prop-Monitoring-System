@@ -8,6 +8,7 @@ package lk.ijse.propmonitoringsystem.Controller;
 import lk.ijse.propmonitoringsystem.Service.FieldCropDetailsService;
 import lk.ijse.propmonitoringsystem.dto.impl.FieldCropDetailsDto;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
+import lk.ijse.propmonitoringsystem.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("api/v1/fieldEquip")
 public class FieldCropDetailsController {
@@ -30,7 +32,7 @@ public class FieldCropDetailsController {
     ) {
         try {
             FieldCropDetailsDto buildFieldEquip = new FieldCropDetailsDto();
-            buildFieldEquip.setFieldDetailsId(fieldEquipId);
+            buildFieldEquip.setFieldDetailsId(AppUtil.generateFieldDetailsId());
             buildFieldEquip.setField(fieldId);
             buildFieldEquip.setCrop(cropId);
             fieldEquipmentDetailsService.saveFieldEquipmentDetails(buildFieldEquip);

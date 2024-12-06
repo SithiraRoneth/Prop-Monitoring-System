@@ -10,6 +10,8 @@ import lk.ijse.propmonitoringsystem.Service.DutyManageService;
 import lk.ijse.propmonitoringsystem.dao.DutyManageDao;
 import lk.ijse.propmonitoringsystem.dto.impl.DutyManageDto;
 import lk.ijse.propmonitoringsystem.entity.impl.DutyManage;
+import lk.ijse.propmonitoringsystem.entity.impl.Field;
+import lk.ijse.propmonitoringsystem.entity.impl.Staff;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,25 @@ public class DutyManageServiceImpl implements DutyManageService {
 
     @Override
     public void saveDutyManage(DutyManageDto dutyManageDto) {
-        DutyManage save = dutyManageDao.save(mapping.toDutyManageEntity(dutyManageDto));
-        if (save == null) {
-            throw new DataPersistException("save duty manage details failed");
+        DutyManage entity = mapping.toDutyManageEntity(dutyManageDto);
+
+        if (dutyManageDto.getStaff_email() != null) {
+            Staff staff = new Staff(dutyManageDto.getStaff_email());
+            entity.setStaff(staff);
+        }
+
+        if (dutyManageDto.getField_code() != null) {
+            Field field = new Field(dutyManageDto.getField_code());
+            entity.setField(field);
+        }
+
+        DutyManage savedEntity = dutyManageDao.save(entity);
+
+        if (savedEntity == null) {
+            throw new DataPersistException("Save duty manage details failed");
         }
     }
+
 
     @Override
     public List<DutyManageDto> getAllDutyManage() {

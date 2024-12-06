@@ -8,8 +8,6 @@ package lk.ijse.propmonitoringsystem.Controller;
 import lk.ijse.propmonitoringsystem.Service.CropService;
 import lk.ijse.propmonitoringsystem.dto.CropStatus;
 import lk.ijse.propmonitoringsystem.dto.impl.CropDto;
-import lk.ijse.propmonitoringsystem.dto.impl.FieldDto;
-import lk.ijse.propmonitoringsystem.entity.impl.Crop;
 import lk.ijse.propmonitoringsystem.exception.CropNotFoundException;
 import lk.ijse.propmonitoringsystem.exception.DataPersistException;
 import lk.ijse.propmonitoringsystem.util.AppUtil;
@@ -80,6 +78,7 @@ public class CropController {
     public ResponseEntity<Void> deleteCrop(@PathVariable("crop-code") String cropCode) {
         try {
             cropService.deleteCrop(cropCode);
+            logger.info("crop deleted");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (CropNotFoundException e) {
             e.printStackTrace();
@@ -138,7 +137,8 @@ public class CropController {
         buildCrop.setCategory(category);
         buildCrop.setSeason(season);
 
-        cropService.updateCrop(cropCode, buildCrop);  // Pass the cropCode and updated crop data
+        cropService.updateCrop(cropCode, buildCrop);// Pass the cropCode and updated crop data
+        logger.info("crop updated");
     }
 
 

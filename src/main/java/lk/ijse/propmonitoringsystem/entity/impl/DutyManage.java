@@ -16,7 +16,7 @@ import java.util.Date;
 public class DutyManage implements SuperEntity {
     @Id
     private String duty_id;
-    private Date date;
+    private String date;
     private String timePeriod;
     private String duty;
 

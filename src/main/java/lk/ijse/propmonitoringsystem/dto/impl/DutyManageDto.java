@@ -6,6 +6,8 @@
 package lk.ijse.propmonitoringsystem.dto.impl;
 
 import lk.ijse.propmonitoringsystem.dto.DutyManageStatus;
+import lk.ijse.propmonitoringsystem.entity.impl.Field;
+import lk.ijse.propmonitoringsystem.entity.impl.Staff;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,10 +18,10 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DutyManageDto implements DutyManageStatus {
-    private String dutyId;
-    private String duty;
-    private String staffId;
-    private String fieldId;
+    private String duty_id;
     private String date;
     private String timePeriod;
+    private String duty;
+    private String staff_email;
+    private String field_code;
 }

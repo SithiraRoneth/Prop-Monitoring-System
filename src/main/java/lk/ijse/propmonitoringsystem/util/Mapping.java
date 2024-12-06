@@ -254,5 +254,15 @@ public class Mapping {
     public List<UserStaffDetailsDto> toUserStaffDetailsDtoList(List<UserStaffDetails> userStaffDetailsList) {
         return modelMapper.map(userStaffDetailsList, new TypeToken<List<UserStaffDetailsDto>>() {}.getType());
     }
+
+    public User toUserEntity(UserDto userDto) {
+        return modelMapper.map(userDto, User.class);
+    }
+    public UserDto toUserDto(User user) {
+        return modelMapper.map(user, UserDto.class);
+    }
+    public List<UserDto> touserDtoList(List<User> users) {
+        return modelMapper.map(users, new TypeToken<List<UserDto>>() {}.getType());
+    }
 }
 

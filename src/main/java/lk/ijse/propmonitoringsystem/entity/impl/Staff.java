@@ -47,4 +47,9 @@ public class Staff implements SuperEntity {
 
     @OneToMany(mappedBy = "staff")
     private List<EquipmentManage> staffEmail;
+
+    public Staff(String email){
+        this.email = email;
+    }
+
 }

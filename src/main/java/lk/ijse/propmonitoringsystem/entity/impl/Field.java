@@ -23,6 +23,9 @@ public class Field implements SuperEntity {
     @OneToMany(mappedBy = "field")
     private List<FieldCropDetails> field_Code;
 
+    @OneToMany(mappedBy = "field")
+    private List<DutyManage> field_code;
+
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage1;
 
@@ -31,4 +34,8 @@ public class Field implements SuperEntity {
 
     @OneToMany(mappedBy = "field")
     private List<EquipmentManage> Field_Code;
+
+    public Field(String fieldCode){
+        this.fieldCode = fieldCode;
+    }
 }

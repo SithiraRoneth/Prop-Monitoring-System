@@ -50,13 +50,13 @@ public class MonitoringLogServiceImpl implements MonitoringLogService {
 
     @Override
     public void updateMonitor(String logCode, MonitoringLogDto monitoringLogDto) {
-        Optional<MonitoringLog> tempMonitor = monitoringDao.findById(logCode);
-        if (tempMonitor.isPresent()){
-            MonitoringLog monitoringLog = tempMonitor.get();
-            monitoringLog.setDate(monitoringLogDto.getDate());
-            monitoringLog.setLogDetails(monitoringLogDto.getLogDetails());
-            monitoringLog.setObservedImage(monitoringLogDto.getObservedImage());
-        }
+//        Optional<MonitoringLog> tempMonitor = monitoringDao.findById(logCode);
+//        if (tempMonitor.isPresent()){
+//            MonitoringLog monitoringLog = tempMonitor.get();
+//            monitoringLog.setDate(monitoringLogDto.getDate());
+//            monitoringLog.setLogDetails(monitoringLogDto.getLogDetails());
+//            monitoringLog.setObservedImage(monitoringLogDto.getObservedImage());
+//        }
     }
 
     @Override

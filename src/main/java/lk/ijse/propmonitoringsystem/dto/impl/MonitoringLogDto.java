@@ -6,22 +6,17 @@
 package lk.ijse.propmonitoringsystem.dto.impl;
 
 import lk.ijse.propmonitoringsystem.dto.MonitoringLogStatus;
+import lk.ijse.propmonitoringsystem.entity.impl.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class MonitoringLogDto implements MonitoringLogStatus {
     private String logCode;
-    private Date date;
-    private String logDetails;
-    private String observedImage;
-    private List<FieldDto> fields;
-    private List<CropDto> crops;
-    private List<StaffDto> staffs;
+    private String date;
+    private User user;
 }
